@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="不懂怎么学？不学怎么懂！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="最近在用 pygame 写小游戏时遇到一个问题，在加载 .png 图片的时候，控制台会一直输出 libpng warning: iCCP: known incorrect sRGB profile，虽然程序能跑起来但是看起来实在烦人，也影响调试。所以去搜索了相关问题，在这篇博客的评论下找到了解决办法。方法是使用 PyQt5 对图片进行转换。不过我自己尝试发现，直接使用 pygame 对图片进行转换">
+<meta name="keywords" content="python,pygame">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pygame报libpng warning提示的解决方法">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;pygame-libpng-warning.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="不懂怎么学？不学怎么懂！">
+<meta property="og:description" content="最近在用 pygame 写小游戏时遇到一个问题，在加载 .png 图片的时候，控制台会一直输出 libpng warning: iCCP: known incorrect sRGB profile，虽然程序能跑起来但是看起来实在烦人，也影响调试。所以去搜索了相关问题，在这篇博客的评论下找到了解决办法。方法是使用 PyQt5 对图片进行转换。不过我自己尝试发现，直接使用 pygame 对图片进行转换">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-10T13:21:17.232Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2019/">
+<link rel="canonical" href="http://liu29475.github.io/python/pygame-libpng-warning.html">
 
 
 <script id="page-configurations">
@@ -63,13 +65,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>pygame报libpng warning提示的解决方法 | 笔记 or 博客</title>
   
 
 
@@ -198,49 +200,103 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/pygame-libpng-warning.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          pygame报libpng warning提示的解决方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-25 16:46:12" itemprop="dateCreated datePublished" datetime="2019-11-25T16:46:12+08:00">2019-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-10 21:21:17" itemprop="dateModified" datetime="2020-06-10T21:21:17+08:00">2020-06-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p>最近在用 <code>pygame</code> 写小游戏时遇到一个问题，在加载 <code>.png</code> 图片的时候，控制台会一直输出 <code>libpng warning: iCCP: known incorrect sRGB profile</code>，虽然程序能跑起来但是看起来实在烦人，也影响调试。所以去搜索了相关问题，在<a href="https://blog.csdn.net/u010212648/article/details/82191419" target="_blank" rel="noopener">这篇博客</a>的评论下找到了解决办法。方法是使用 <code>PyQt5</code> 对图片进行转换。不过我自己尝试发现，直接使用 <code>pygame</code> 对图片进行转换也可以解决。</p><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pygame</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">translate</span><span class="params">(path)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> file <span class="keyword">in</span> os.listdir(path):</span><br><span class="line">        <span class="keyword">if</span> file.endswith(<span class="string">'.png'</span>):</span><br><span class="line">            full_path = os.path.join(path, file)</span><br><span class="line">            image = pygame.image.load(full_path)</span><br><span class="line">            pygame.image.save(image, full_path)</span><br></pre></td></tr></table></figure>
+
+<p>简单理解就是调用 <code>pygame.image.load()</code> 加载一遍给定路径中的图片再调用 <code>pygame.image.save()</code> 保存图片。假设图片存储在和这段程序同级的<code>images</code>目录下，调用 <code>translate(&#39;images/&#39;)</code> 就可以解决上述问题。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T16:46:12+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+              <a href="/tags/pygame/" rel="tag"><i class="fa fa-tag"></i> pygame</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/pygame-libpng-warning.html" itemprop="url">
-            <span itemprop="name">pygame报libpng warning提示的解决方法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/python/a-function-to-format-ast-node.html" rel="next" title="一个格式化ast.dump返回值的函数">
+      一个格式化ast.dump返回值的函数 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

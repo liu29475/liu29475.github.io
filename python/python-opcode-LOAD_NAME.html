@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="LOAD_NAME 操作码的编号为101，是一个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;LOAD_NAME&amp;apos;]101">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——LOAD_NAME">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-LOAD_NAME.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="LOAD_NAME 操作码的编号为101，是一个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;LOAD_NAME&amp;apos;]101">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-10T15:06:12.199Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-LOAD_NAME.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——LOAD_NAME | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-LOAD_NAME.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——LOAD_NAME
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-10 22:55:36 / 修改时间：23:06:12" itemprop="dateCreated datePublished" datetime="2020-06-10T22:55:36+08:00">2020-06-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>LOAD_NAME</code> 操作码的编号为101，是一个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'LOAD_NAME'</span>]</span><br><span class="line"><span class="number">101</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>该操作码的作用是将变量名对应的值压入值栈中，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">TARGET(LOAD_NAME) &#123;</span><br><span class="line">    PyObject *name = GETITEM(names, oparg);</span><br><span class="line">    PyObject *locals = f-&gt;f_locals;</span><br><span class="line">    PyObject *v;</span><br><span class="line">    <span class="keyword">if</span> (locals == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        PyErr_Format(PyExc_SystemError,</span><br><span class="line">                        <span class="string">"no locals when loading %R"</span>, name);</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (PyDict_CheckExact(locals)) &#123;</span><br><span class="line">        v = PyDict_GetItem(locals, name);</span><br><span class="line">        Py_XINCREF(v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        v = PyObject_GetItem(locals, name);</span><br><span class="line">        <span class="keyword">if</span> (v == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!PyErr_ExceptionMatches(PyExc_KeyError))</span><br><span class="line">                <span class="keyword">goto</span> error;</span><br><span class="line">            PyErr_Clear();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (v == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        v = PyDict_GetItem(f-&gt;f_globals, name);</span><br><span class="line">        Py_XINCREF(v);</span><br><span class="line">        <span class="keyword">if</span> (v == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (PyDict_CheckExact(f-&gt;f_builtins)) &#123;</span><br><span class="line">                v = PyDict_GetItem(f-&gt;f_builtins, name);</span><br><span class="line">                <span class="keyword">if</span> (v == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    format_exc_check_arg(</span><br><span class="line">                                PyExc_NameError,</span><br><span class="line">                                NAME_ERROR_MSG, name);</span><br><span class="line">                    <span class="keyword">goto</span> error;</span><br><span class="line">                &#125;</span><br><span class="line">                Py_INCREF(v);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                v = PyObject_GetItem(f-&gt;f_builtins, name);</span><br><span class="line">                <span class="keyword">if</span> (v == <span class="literal">NULL</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (PyErr_ExceptionMatches(PyExc_KeyError))</span><br><span class="line">                        format_exc_check_arg(</span><br><span class="line">                                    PyExc_NameError,</span><br><span class="line">                                    NAME_ERROR_MSG, name);</span><br><span class="line">                    <span class="keyword">goto</span> error;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    PUSH(v);</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>首先根据操作码的参数 <code>oparg</code> 从 <code>names</code> 元组中获取变量名的字符串表示，<code>names</code> 指向代码对象的 <code>co_names</code> 字段。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PyObject *names;</span><br><span class="line">names = co-&gt;co_names;</span><br></pre></td></tr></table></figure>
+
+<p>接着获取帧对象的 <code>f_locals</code> 也就是局部命名空间的值，如果值不存在，则表示没有局部命名空间，所以会引发一个 <code>SystemError</code>，此时需要跳转到错误处理的代码块。往下，<code>PyDict_CheckExact</code> 是一个宏，检查 <code>locals</code> 是否是一个 <code>dict</code> 对象。注意，只有 <code>locals</code> 是 <code>dict</code> 对象而不是其子类时才返回true。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define PyDict_CheckExact(op) (Py_TYPE(op) == &amp;PyDict_Type)</span><br></pre></td></tr></table></figure>
+
+<p>如果条件为真，调用 <code>PyDict_GetItem</code> 从 <code>locals</code> 字典中获取键为 <code>name</code> 的值，即 <code>locals[name]</code>，并增加其引用计数，<code>Py_XINCREF</code> 在增加引用计数前会检查参数是否为 <code>NULL</code>。条件为假则调用 <code>PyObject_GetItem</code>，这个函数的行为也类似于 <code>locals[name]</code>，不过 <code>locals</code> 可以是任意 Python 对象。在获取不到值时，会返回 <code>NULL</code> 并设置相应的异常。往下看，当 <code>v</code> 为 <code>NULL</code>，也就是引发了异常时，会调用<code>PyErr_ExceptionMatches</code> 对 <code>PyObject_GetItem</code> 设置的异常进行匹配，如果不是 <code>KeyError</code>，则直接跳到错误处理部分；而如果是 <code>KeyError</code>，则调用 <code>PyErr_Clear</code> 把异常清掉。</p>
+<p>稍微解释一下这里为什么会这么写，在帧对象中有3个字段 <code>f_builtins</code>、<code>f_globals</code>、<code>f_locals</code>，分别表示内置符号表、全局符号表和局部符号表，前两个必须是 Python 的 <code>dict</code> 对象，而最后一个可以是任意的映射对象，包括 <code>dict</code>。所以要取 <code>f_locals</code> 中的值的时候，会先判断它是否是 <code>dict</code> 对象，如果是，则直接调用 <code>PyDict_GetItem</code>。而如果是其它映射对象，则调用 <code>PyObject_GetItem</code>，这个函数所做的工作比 <code>PyDict_GetItem</code> 复杂，效率比较低。</p>
+<p>往下，如果 <code>v</code> 为 <code>NULL</code>，也就是说 <code>f_locals</code> 中没有找到变量，那么就到 <code>f_globals</code> 中去找。也就是 <code>v = PyDict_GetItem(f-&gt;f_globals, name)</code> 这行的工作。如果还是没找到，则继续去 <code>f_builtins</code> 中找。</p>
+<p>注意，在 <code>f_builtins</code> 中查找的时候，会先检查 <code>f_builtins</code> 是否是 <code>dict</code> 对象，如果是，则调用 <code>PyDict_GetItem</code> 获取值，如果找到了，增加其引用计数。而如果值为 <code>NULL</code>，后面已经没有命名空间了，所以需要引发一个 <code>NameError</code> 异常。<code>NAME_ERROR_MSG</code> 定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NAME_ERROR_MSG <span class="meta-string">"name '%.200s' is not defined"</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>f_builtins</code> 不是一个字典对象，会调用 <code>PyObject_GetItem</code> 获取值，如果值为 <code>NULL</code>，则先对 <code>PyObject_GetItem</code> 设置的异常进行匹配，如果是 <code>KeyError</code>，则引发一个 <code>NameError</code> 异常，否则直接跳转到错误处理。注意在这个分支里没有增加 <code>v</code> 的引用计数。</p>
+<p>走到最后，确实找到了值 <code>v</code>，则将其压入值栈中供后面的操作码使用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-LOAD_FAST.html" rel="prev" title="Python操作码——LOAD_FAST">
+      <i class="fa fa-chevron-left"></i> Python操作码——LOAD_FAST
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-STORE_NAME.html" rel="next" title="Python操作码——STORE_NAME">
+      Python操作码——STORE_NAME <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>

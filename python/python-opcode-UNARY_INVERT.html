@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="不懂怎么学？不学怎么懂！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="UNARY_INVERT 操作码的编号是15，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;UNARY_INVERT&amp;apos;]15">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——UNARY_INVERT">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-UNARY_INVERT.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="不懂怎么学？不学怎么懂！">
+<meta property="og:description" content="UNARY_INVERT 操作码的编号是15，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;UNARY_INVERT&amp;apos;]15">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-11T13:17:06.709Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2019/">
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-UNARY_INVERT.html">
 
 
 <script id="page-configurations">
@@ -63,13 +65,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>Python操作码——UNARY_INVERT | 笔记 or 博客</title>
   
 
 
@@ -198,49 +200,106 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-UNARY_INVERT.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——UNARY_INVERT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-11 21:16:42 / 修改时间：21:17:06" itemprop="dateCreated datePublished" datetime="2020-06-11T21:16:42+08:00">2020-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p><code>UNARY_INVERT</code> 操作码的编号是15，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'UNARY_INVERT'</span>]</span><br><span class="line"><span class="number">15</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这个操作码对应 Python 的单目运算符 <code>~</code>，底层实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">TARGET(UNARY_INVERT) &#123;</span><br><span class="line">    PyObject *value = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Invert(value);</span><br><span class="line">    Py_DECREF(value);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>首先获取值栈栈顶的值 <code>value</code>，然后将其作为参数调用 <code>PyNumber_Invert</code>，在 Objects/abstract.c 中定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_Invert(PyObject *o)</span><br><span class="line">&#123;</span><br><span class="line">    PyNumberMethods *m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (o == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> null_error();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    m = o-&gt;ob_type-&gt;tp_as_number;</span><br><span class="line">    <span class="keyword">if</span> (m &amp;&amp; m-&gt;nb_invert)</span><br><span class="line">        <span class="keyword">return</span> (*m-&gt;nb_invert)(o);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> type_error(<span class="string">"bad operand type for unary ~: '%.200s'"</span>, o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数的核心是检查对象 <code>o</code> 的 <code>ob_type</code> 字段的 <code>tp_as_number</code> 的 <code>nb_invert</code> 字段的值是否为 <code>NULL</code>，这个字段的值是一个函数指针，如果不为 <code>NULL</code> 则调用它并将结果返回，否则设置 <code>TypeError</code> 并返回 <code>NULL</code>。</p>
+<p>回到操作码的执行，返回值由 <code>res</code> 接收，往下会减少 <code>value</code> 的引用计数，并将值栈栈顶的值设置成 <code>res</code>， 如果 <code>res</code> 为 <code>NULL</code>，跳转到错误处理，否则执行下一个操作码。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T16:46:12+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/pygame-libpng-warning.html" itemprop="url">
-            <span itemprop="name">pygame报libpng warning提示的解决方法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-UNARY_NOT.html" rel="prev" title="Python操作码——UNARY_NOT">
+      <i class="fa fa-chevron-left"></i> Python操作码——UNARY_NOT
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BINARY_POWER.html" rel="next" title="Python操作码——BINARY_POWER">
+      Python操作码——BINARY_POWER <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

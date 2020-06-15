@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="不懂怎么学？不学怎么懂！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="BINARY_FLOOR_DIVIDE 操作码的编号是26，是个不带参数的操作码。">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BINARY_FLOOR_DIVIDE">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BINARY_FLOOR_DIVIDE.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="不懂怎么学？不学怎么懂！">
+<meta property="og:description" content="BINARY_FLOOR_DIVIDE 操作码的编号是26，是个不带参数的操作码。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-11T14:52:08.755Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2019/">
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BINARY_FLOOR_DIVIDE.html">
 
 
 <script id="page-configurations">
@@ -63,13 +65,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>Python操作码——BINARY_FLOOR_DIVIDE | 笔记 or 博客</title>
   
 
 
@@ -198,49 +200,105 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BINARY_FLOOR_DIVIDE.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BINARY_FLOOR_DIVIDE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-11 22:51:51 / 修改时间：22:52:08" itemprop="dateCreated datePublished" datetime="2020-06-11T22:51:51+08:00">2020-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p><code>BINARY_FLOOR_DIVIDE</code> 操作码的编号是26，是个不带参数的操作码。</p><a id="more"></a>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_FLOOR_DIVIDE'</span>]</span><br><span class="line"><span class="number">26</span></span><br></pre></td></tr></table></figure>
+
+<p>这个操作码对应 Python 的双目运算符 <code>//</code>，一般用于整除操作，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_FLOOR_DIVIDE) &#123;</span><br><span class="line">    PyObject *divisor = POP();</span><br><span class="line">    PyObject *dividend = TOP();</span><br><span class="line">    PyObject *quotient = PyNumber_FloorDivide(dividend, divisor);</span><br><span class="line">    Py_DECREF(dividend);</span><br><span class="line">    Py_DECREF(divisor);</span><br><span class="line">    SET_TOP(quotient);</span><br><span class="line">    <span class="keyword">if</span> (quotient == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>和 <code>BINARY_TRUE_DIVIDE</code> 的唯一区别就是 <code>PyNumber_FloorDivide</code>，来看这个函数，在 Objects/abstract.c 中实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_FloorDivide(PyObject *v, PyObject *w)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, NB_SLOT(nb_floor_divide), <span class="string">"//"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也是对 <code>binary_op</code> 的包装，<code>NB_SLOT(nb_floor_divide)</code> 获取 <code>nb_floor_divide</code> 字段在结构体 <code>PyNumberMethods</code> 中的偏移量。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T16:46:12+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/pygame-libpng-warning.html" itemprop="url">
-            <span itemprop="name">pygame报libpng warning提示的解决方法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BINARY_TRUE_DIVIDE.html" rel="prev" title="Python操作码——BINARY_TRUE_DIVIDE">
+      <i class="fa fa-chevron-left"></i> Python操作码——BINARY_TRUE_DIVIDE
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BINARY_MODULO.html" rel="next" title="Python操作码——BINARY_MODULO">
+      Python操作码——BINARY_MODULO <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

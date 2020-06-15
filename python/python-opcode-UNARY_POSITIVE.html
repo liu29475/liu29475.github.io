@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="UNARY_POSITIVE 的编号是10，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;UNARY_POSITIVE&amp;apos;]10">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——UNARY_POSITIVE">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-UNARY_POSITIVE.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="UNARY_POSITIVE 的编号是10，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;UNARY_POSITIVE&amp;apos;]10">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-11T13:05:54.556Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-UNARY_POSITIVE.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——UNARY_POSITIVE | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-UNARY_POSITIVE.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——UNARY_POSITIVE
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-11 21:04:33 / 修改时间：21:05:54" itemprop="dateCreated datePublished" datetime="2020-06-11T21:04:33+08:00">2020-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>UNARY_POSITIVE</code> 的编号是10，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'UNARY_POSITIVE'</span>]</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这个操作码对应 Python 中的单目运算符 <code>+</code>，底层实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">TARGET(UNARY_POSITIVE) &#123;</span><br><span class="line">    PyObject *value = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Positive(value);</span><br><span class="line">    Py_DECREF(value);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先获取值栈栈顶的值 <code>value</code>，然后将其作为参数调用 <code>PyNumber_Positive</code> 函数，这个函数在 Objects/abstract.c 中定义，来看其实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_Positive(PyObject *o)</span><br><span class="line">&#123;</span><br><span class="line">    PyNumberMethods *m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (o == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> null_error();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    m = o-&gt;ob_type-&gt;tp_as_number;</span><br><span class="line">    <span class="keyword">if</span> (m &amp;&amp; m-&gt;nb_positive)</span><br><span class="line">        <span class="keyword">return</span> (*m-&gt;nb_positive)(o);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> type_error(<span class="string">"bad operand type for unary +: '%.200s'"</span>, o);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数的返回值是 <code>PyObject *</code> 类型。函数开头定义了一个 <code>PyNumberMethods *</code> 类型的变量，<code>PyNumberMethods</code> 是定义 Python 数字协议的结构体。定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    binaryfunc nb_add;</span><br><span class="line">    binaryfunc nb_subtract;</span><br><span class="line">    binaryfunc nb_multiply;</span><br><span class="line">    binaryfunc nb_remainder;</span><br><span class="line">    binaryfunc nb_divmod;</span><br><span class="line">    ternaryfunc nb_power;</span><br><span class="line">    unaryfunc nb_negative;</span><br><span class="line">    unaryfunc nb_positive;</span><br><span class="line">    unaryfunc nb_absolute;</span><br><span class="line">    inquiry nb_bool;</span><br><span class="line">    unaryfunc nb_invert;</span><br><span class="line">    binaryfunc nb_lshift;</span><br><span class="line">    binaryfunc nb_rshift;</span><br><span class="line">    binaryfunc nb_and;</span><br><span class="line">    binaryfunc nb_xor;</span><br><span class="line">    binaryfunc nb_or;</span><br><span class="line">    unaryfunc nb_int;</span><br><span class="line">    <span class="keyword">void</span> *nb_reserved;  <span class="comment">/* the slot formerly known as nb_long */</span></span><br><span class="line">    unaryfunc nb_float;</span><br><span class="line"></span><br><span class="line">    binaryfunc nb_inplace_add;</span><br><span class="line">    binaryfunc nb_inplace_subtract;</span><br><span class="line">    binaryfunc nb_inplace_multiply;</span><br><span class="line">    binaryfunc nb_inplace_remainder;</span><br><span class="line">    ternaryfunc nb_inplace_power;</span><br><span class="line">    binaryfunc nb_inplace_lshift;</span><br><span class="line">    binaryfunc nb_inplace_rshift;</span><br><span class="line">    binaryfunc nb_inplace_and;</span><br><span class="line">    binaryfunc nb_inplace_xor;</span><br><span class="line">    binaryfunc nb_inplace_or;</span><br><span class="line"></span><br><span class="line">    binaryfunc nb_floor_divide;</span><br><span class="line">    binaryfunc nb_true_divide;</span><br><span class="line">    binaryfunc nb_inplace_floor_divide;</span><br><span class="line">    binaryfunc nb_inplace_true_divide;</span><br><span class="line"></span><br><span class="line">    unaryfunc nb_index;</span><br><span class="line"></span><br><span class="line">    binaryfunc nb_matrix_multiply;</span><br><span class="line">    binaryfunc nb_inplace_matrix_multiply;</span><br><span class="line">&#125; PyNumberMethods;</span><br></pre></td></tr></table></figure>
+
+<p>几乎所有字段都是函数指针，从字段的名称就可以看出它们分别对应哪些函数。这里面我们只关心 <code>nb_positive</code>，类型定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> PyObject * (*unaryfunc)(PyObject *);</span><br></pre></td></tr></table></figure>
+
+<p>函数往下执行，如果参数 <code>o</code> 为 <code>NULL</code>，会调用函数 <code>null_error</code> 并返回：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">null_error(<span class="keyword">void</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!PyErr_Occurred())</span><br><span class="line">        PyErr_SetString(PyExc_SystemError,</span><br><span class="line">                        <span class="string">"null argument to internal routine"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果没有引发异常则设置为 <code>SystemError</code> 然后返回 <code>NULL</code>。</p>
+<p>参数 <code>o</code> 不为 <code>NULL</code>，获取它的 <code>ob_type</code> 字段的 <code>tp_as_number</code> 字段的值，也就是指向 <code>PyNumberMethods</code> 的指针，如果 <code>m</code> 不为 <code>NULL</code> 且 <code>nb_positive</code> 不为 <code>NULL</code>，则将 <code>o</code> 做为参数调用 <code>nb_positive</code> 指向的函数并将结果返回。否则说明对象 <code>o</code> 不支持单目运算符 <code>+</code>，于是返回设置 <code>TypeError</code> 并返回 <code>NULL</code>，也就是 <code>type_error</code> 函数的工作：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">type_error(<span class="keyword">const</span> <span class="keyword">char</span> *msg, PyObject *obj)</span><br><span class="line">&#123;</span><br><span class="line">    PyErr_Format(PyExc_TypeError, msg, obj-&gt;ob_type-&gt;tp_name);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>PyNumber_Positive</code> 执行的结果由 <code>res</code> 接收，之后需要将 <code>value</code> 的引用计数减一，将 <code>res</code> 设置为值栈栈顶的值（相当于弹出 <code>value</code> 压入 <code>res</code>），如果 <code>res</code> 为 <code>NULL</code>，跳转到错误处理，否则执行下一个操作码。</p>
+<p>在 Python 中，对一个不支持单目运算符 <code>+</code> 操作的对象如列表使用确实会引发 <code>TypeError</code>：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>+[]</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: bad operand type <span class="keyword">for</span> unary +: <span class="string">'list'</span></span><br></pre></td></tr></table></figure>
+
+<p>而在一个 <code>int</code> 型数字前加上 <code>+</code> 号会返回数字本身，如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+a</span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a = <span class="number">-5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+a</span><br><span class="line"><span class="number">-5</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'a = -5;+a'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> (<span class="number">-5</span>)</span><br><span class="line">              <span class="number">2</span> STORE_NAME               <span class="number">0</span> (a)</span><br><span class="line">              <span class="number">4</span> LOAD_NAME                <span class="number">0</span> (a)</span><br><span class="line">              <span class="number">6</span> UNARY_POSITIVE</span><br><span class="line">              <span class="number">8</span> POP_TOP</span><br><span class="line">             <span class="number">10</span> LOAD_CONST               <span class="number">1</span> (<span class="literal">None</span>)</span><br><span class="line">             <span class="number">12</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
+
+<p>简单跟踪这段字节码里 <code>UNARY_POSITIVE</code> 的执行，根据上面的分析，这个操作码先获取值栈栈顶的值，在这里是-5，然后以-5作为参数调用 <code>PyNumber_Positive</code>。执行流到了 <code>PyNumber_Positive</code> 函数，-5 是 <code>int</code> 对象，所以 <code>o-&gt;ob_type</code> 是 <code>PyLong_Type</code>，来看看它的定义，位于 Objects/longobject.c 文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyLong_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"int"</span>,                                      <span class="comment">/* tp_name */</span></span><br><span class="line">    offsetof(PyLongObject, ob_digit),           <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(digit),                              <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    long_dealloc,                               <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    long_to_decimal_string,                     <span class="comment">/* tp_repr */</span></span><br><span class="line">    &amp;long_as_number,                            <span class="comment">/* tp_as_number */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_as_sequence */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_as_mapping */</span></span><br><span class="line">    (hashfunc)long_hash,                        <span class="comment">/* tp_hash */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_call */</span></span><br><span class="line">    long_to_decimal_string,                     <span class="comment">/* tp_str */</span></span><br><span class="line">    PyObject_GenericGetAttr,                    <span class="comment">/* tp_getattro */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattro */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_as_buffer */</span></span><br><span class="line">    Py_TPFLAGS_DEFAULT | Py_TPFLAGS_BASETYPE |</span><br><span class="line">        Py_TPFLAGS_LONG_SUBCLASS,               <span class="comment">/* tp_flags */</span></span><br><span class="line">    long_doc,                                   <span class="comment">/* tp_doc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_traverse */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_clear */</span></span><br><span class="line">    long_richcompare,                           <span class="comment">/* tp_richcompare */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_weaklistoffset */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_iter */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_iternext */</span></span><br><span class="line">    long_methods,                               <span class="comment">/* tp_methods */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_members */</span></span><br><span class="line">    long_getset,                                <span class="comment">/* tp_getset */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_base */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_dict */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_descr_get */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_descr_set */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_dictoffset */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_init */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_alloc */</span></span><br><span class="line">    long_new,                                   <span class="comment">/* tp_new */</span></span><br><span class="line">    PyObject_Del,                               <span class="comment">/* tp_free */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>有点长，注意 <code>tp_as_number</code> 字段位置的值 <code>long_as_number</code>，它的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyNumberMethods long_as_number = &#123;</span><br><span class="line">    (binaryfunc)long_add,       <span class="comment">/*nb_add*/</span></span><br><span class="line">    (binaryfunc)long_sub,       <span class="comment">/*nb_subtract*/</span></span><br><span class="line">    (binaryfunc)long_mul,       <span class="comment">/*nb_multiply*/</span></span><br><span class="line">    long_mod,                   <span class="comment">/*nb_remainder*/</span></span><br><span class="line">    long_divmod,                <span class="comment">/*nb_divmod*/</span></span><br><span class="line">    long_pow,                   <span class="comment">/*nb_power*/</span></span><br><span class="line">    (unaryfunc)long_neg,        <span class="comment">/*nb_negative*/</span></span><br><span class="line">    (unaryfunc)long_long,       <span class="comment">/*tp_positive*/</span></span><br><span class="line">    (unaryfunc)long_abs,        <span class="comment">/*tp_absolute*/</span></span><br><span class="line">    (inquiry)long_bool,         <span class="comment">/*tp_bool*/</span></span><br><span class="line">    (unaryfunc)long_invert,     <span class="comment">/*nb_invert*/</span></span><br><span class="line">    long_lshift,                <span class="comment">/*nb_lshift*/</span></span><br><span class="line">    (binaryfunc)long_rshift,    <span class="comment">/*nb_rshift*/</span></span><br><span class="line">    long_and,                   <span class="comment">/*nb_and*/</span></span><br><span class="line">    long_xor,                   <span class="comment">/*nb_xor*/</span></span><br><span class="line">    long_or,                    <span class="comment">/*nb_or*/</span></span><br><span class="line">    long_long,                  <span class="comment">/*nb_int*/</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/*nb_reserved*/</span></span><br><span class="line">    long_float,                 <span class="comment">/*nb_float*/</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_add */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_subtract */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_multiply */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_remainder */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_power */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_lshift */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_rshift */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_and */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_xor */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_or */</span></span><br><span class="line">    long_div,                   <span class="comment">/* nb_floor_divide */</span></span><br><span class="line">    long_true_divide,           <span class="comment">/* nb_true_divide */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_floor_divide */</span></span><br><span class="line">    <span class="number">0</span>,                          <span class="comment">/* nb_inplace_true_divide */</span></span><br><span class="line">    long_long,                  <span class="comment">/* nb_index */</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>找到 <code>nb_positive</code> 字段位置的值 <code>(unaryfunc)long_long</code>，真正完成工作的就是这个函数，来看看其定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">long_long(PyObject *v)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (PyLong_CheckExact(v))</span><br><span class="line">        Py_INCREF(v);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        v = _PyLong_Copy((PyLongObject *)v);</span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>逻辑非常简单，如果参数 <code>v</code> 是 <code>int</code> 对象（不是子类），增加其引用计数，否则将其转换成 <code>int</code> 对象，这一步由 <code>_PyLong_Copy</code> 完成，最后将 <code>v</code> 返回。好，追踪到此结束。</p>
+<p>上面说到如果是一个非 <code>int</code> 对象会被转换成一个 <code>int</code> 对象，来看一个简单的示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>type(<span class="literal">True</span>).__mro__  <span class="comment"># bool类是int的子类</span></span><br><span class="line">(&lt;class 'bool'&gt;, &lt;class 'int'&gt;, &lt;class 'object'&gt;)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>+<span class="literal">True</span>   <span class="comment"># 被转换成了1</span></span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-DUP_TOP_TWO.html" rel="prev" title="Python操作码——DUP_TOP_TWO">
+      <i class="fa fa-chevron-left"></i> Python操作码——DUP_TOP_TWO
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-UNARY_NEGATIVE.html" rel="next" title="Python操作码——UNARY_NEGATIVE">
+      Python操作码——UNARY_NEGATIVE <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>

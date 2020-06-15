@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="BINARY_POWER 操作码的编号是19，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_POWER&amp;apos;]19">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BINARY_POWER">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BINARY_POWER.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="BINARY_POWER 操作码的编号是19，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_POWER&amp;apos;]19">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-11T13:55:55.920Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BINARY_POWER.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——BINARY_POWER | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">24</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BINARY_POWER.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BINARY_POWER
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-11 21:46:37 / 修改时间：21:55:55" itemprop="dateCreated datePublished" datetime="2020-06-11T21:46:37+08:00">2020-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>BINARY_POWER</code> 操作码的编号是19，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_POWER'</span>]</span><br><span class="line"><span class="number">19</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这个操作码对应 Python 的双目运算符 <code>**</code>，常用于数字的幂运算。底层实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_POWER) &#123;</span><br><span class="line">    PyObject *<span class="built_in">exp</span> = POP();</span><br><span class="line">    PyObject *base = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Power(base, <span class="built_in">exp</span>, Py_None);</span><br><span class="line">    Py_DECREF(base);</span><br><span class="line">    Py_DECREF(<span class="built_in">exp</span>);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先从值栈中获取幂运算的指数 <code>exp</code> 和底数 <code>base</code>，它们被压入值栈中的顺序是先底数后指数，所以获取时顺序相反，看个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'a = 2; a**2'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> (<span class="number">2</span>)</span><br><span class="line">              <span class="number">2</span> STORE_NAME               <span class="number">0</span> (a)</span><br><span class="line">              <span class="number">4</span> LOAD_NAME                <span class="number">0</span> (a)</span><br><span class="line">              <span class="number">6</span> LOAD_CONST               <span class="number">0</span> (<span class="number">2</span>)</span><br><span class="line">              <span class="number">8</span> BINARY_POWER</span><br><span class="line">             <span class="number">10</span> POP_TOP</span><br><span class="line">             <span class="number">12</span> LOAD_CONST               <span class="number">1</span> (<span class="literal">None</span>)</span><br><span class="line">             <span class="number">14</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
+
+<p>从第三列开始，<code>LOAD_NAME</code> 将底数 <code>a</code> 对应的值压入值栈中，<code>LOAD_CONST</code> 将指数2压入值栈中。接着执行 <code>BINARY_POWER</code>。</p>
+<p>往下，获取底数和指数之后，将它们作为参数调用 <code>PyNumber_Power</code>，这个函数在 Objects/abstract.c 中定义，具体实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_Power(PyObject *v, PyObject *w, PyObject *z)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> PyNumberMethods(v, w, z, NB_SLOT(nb_power), <span class="string">"** or pow()"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这个函数就是对 <code>ternary_op</code> 的简单包装，先来看传给 <code>ternary_op</code> 函数的参数。<code>v</code> 是底数，<code>w</code> 是指数，<code>z</code> 是 <code>None</code>，<code>NB_SLOT</code>，一个宏，定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 C 库的 <code>offsetof</code> 宏求 <code>x</code> 在 <code>PyNumberMethods</code> 结构体中的偏移量，这里求的是 <code>nb_power</code>。最后一个参数是一个常量字符串。接下来来看看 <code>ternary_op</code> 函数的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">ternary_op(PyObject *v,</span><br><span class="line">           PyObject *w,</span><br><span class="line">           PyObject *z,</span><br><span class="line">           <span class="keyword">const</span> <span class="keyword">int</span> op_slot,</span><br><span class="line">           <span class="keyword">const</span> <span class="keyword">char</span> *op_name)</span><br><span class="line">&#123;</span><br><span class="line">    PyNumberMethods *mv, *mw, *mz;</span><br><span class="line">    PyObject *x = <span class="literal">NULL</span>;</span><br><span class="line">    ternaryfunc slotv = <span class="literal">NULL</span>;</span><br><span class="line">    ternaryfunc slotw = <span class="literal">NULL</span>;</span><br><span class="line">    ternaryfunc slotz = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    mv = v-&gt;ob_type-&gt;tp_as_number;</span><br><span class="line">    mw = w-&gt;ob_type-&gt;tp_as_number;</span><br><span class="line">    <span class="keyword">if</span> (mv != <span class="literal">NULL</span>)</span><br><span class="line">        slotv = NB_TERNOP(mv, op_slot);</span><br><span class="line">    <span class="keyword">if</span> (w-&gt;ob_type != v-&gt;ob_type &amp;&amp;</span><br><span class="line">        mw != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        slotw = NB_TERNOP(mw, op_slot);</span><br><span class="line">        <span class="keyword">if</span> (slotw == slotv)</span><br><span class="line">            slotw = <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (slotv) &#123;</span><br><span class="line">        <span class="keyword">if</span> (slotw &amp;&amp; PyType_IsSubtype(w-&gt;ob_type, v-&gt;ob_type)) &#123;</span><br><span class="line">            x = slotw(v, w, z);</span><br><span class="line">            <span class="keyword">if</span> (x != Py_NotImplemented)</span><br><span class="line">                <span class="keyword">return</span> x;</span><br><span class="line">            Py_DECREF(x); <span class="comment">/* can't do it */</span></span><br><span class="line">            slotw = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        x = slotv(v, w, z);</span><br><span class="line">        <span class="keyword">if</span> (x != Py_NotImplemented)</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        Py_DECREF(x); <span class="comment">/* can't do it */</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (slotw) &#123;</span><br><span class="line">        x = slotw(v, w, z);</span><br><span class="line">        <span class="keyword">if</span> (x != Py_NotImplemented)</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        Py_DECREF(x); <span class="comment">/* can't do it */</span></span><br><span class="line">    &#125;</span><br><span class="line">    mz = z-&gt;ob_type-&gt;tp_as_number;</span><br><span class="line">    <span class="keyword">if</span> (mz != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        slotz = NB_TERNOP(mz, op_slot);</span><br><span class="line">        <span class="keyword">if</span> (slotz == slotv || slotz == slotw)</span><br><span class="line">            slotz = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="keyword">if</span> (slotz) &#123;</span><br><span class="line">            x = slotz(v, w, z);</span><br><span class="line">            <span class="keyword">if</span> (x != Py_NotImplemented)</span><br><span class="line">                <span class="keyword">return</span> x;</span><br><span class="line">            Py_DECREF(x); <span class="comment">/* can't do it */</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (z == Py_None)</span><br><span class="line">        PyErr_Format(</span><br><span class="line">            PyExc_TypeError,</span><br><span class="line">            <span class="string">"unsupported operand type(s) for ** or pow(): "</span></span><br><span class="line">            <span class="string">"'%.100s' and '%.100s'"</span>,</span><br><span class="line">            v-&gt;ob_type-&gt;tp_name,</span><br><span class="line">            w-&gt;ob_type-&gt;tp_name);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        PyErr_Format(</span><br><span class="line">            PyExc_TypeError,</span><br><span class="line">            <span class="string">"unsupported operand type(s) for pow(): "</span></span><br><span class="line">            <span class="string">"'%.100s', '%.100s', '%.100s'"</span>,</span><br><span class="line">            v-&gt;ob_type-&gt;tp_name,</span><br><span class="line">            w-&gt;ob_type-&gt;tp_name,</span><br><span class="line">            z-&gt;ob_type-&gt;tp_name);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数开头定义了三个 <code>PyNumberMethods *</code> 类型的变量 <code>mv</code>、<code>mw</code>、<code>mz</code>，一个 <code>PyObject *</code> 类型的变量 <code>x</code> 和三个 <code>ternaryfunc</code> 函数指针类型的变量 <code>slotv</code>、<code>slotw</code>、<code>slotz</code>。接下来分别获取 <code>v</code> 和 <code>w</code> 的 <code>ob_type</code> 的 <code>tp_as_number</code> 字段的值。如果 <code>mv</code> 不为 <code>NULL</code>，使用 <code>NB_TERNOP</code> 宏获取它的 <code>nb_power</code> 字段指向的函数并赋值给 slotv。宏的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_TERNOP(nb_methods,slot) \</span></span><br><span class="line">        (*(ternaryfunc*)(&amp; ((<span class="keyword">char</span>*)nb_methods)[slot]))</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>简单解释这个宏，这里传进来的 <code>nb_methods</code> 是一个 <code>PyNumberMethods *</code> 类型的值，而 <code>slot</code> 是个 <code>int</code> 类型的值，表示偏移量。<code>(char *)nb_methods</code> 将 <code>nb_methods</code> 转换成了 <code>char *</code> 类型，后面的下标运算相当于 <code>((char *)nb_methods) + slot</code>，于是取到了 <code>nb_power</code> 在 <code>PyNumberMethods</code> 的首地址对应的值。但是，这里需要的是地址，所以就有了 <code>&amp;</code> 取地址符。拿到了地址之后，转换成 <code>ternaryfunc *</code> 的形式读取，最后用 <code>*</code> 解引用得到了 <code>nb_power</code> 指向的那个函数。</p>
+</blockquote>
+<p>接下来判断 <code>w</code> 和 <code>v</code> 是否是不同类型，如果不是且 <code>mv</code> 不为 <code>NULL</code>，同样使用宏获取它的 <code>nb_power</code> 指向的函数并赋值给 <code>slotw</code>，如果 <code>slotw</code> 和 <code>slotv</code> 是同一个函数，就将 <code>slotw</code> 设为 <code>NULL</code>。</p>
+<p>往下，<code>slotv</code> 不为 <code>NULL</code> 的情况，如果 <code>slotw</code> 也不为 <code>NULL</code> 且 <code>w</code> 是 <code>v</code> 的子类，直接将 <code>v</code>、<code>w</code>、<code>z</code> 作为参数调用 <code>slotw</code>，如果返回值 <code>x</code> 不是 <code>NotImplemented</code>，直接将 <code>x</code> 返回。否则，减少 <code>x</code> 的引用计数并将 <code>slotw</code> 设为 <code>NULL</code>。再往下，调用 <code>slotv</code>，然后再次判断结果决定是否返回。</p>
+<p>没有返回，继续往下执行，如果 <code>slotw</code> 不为 <code>NULL</code>，调用 <code>slotw</code> 然后重复上述过程。如果函数还是没返回，获取 <code>z</code> 的 <code>ob_type</code> 的 <code>tp_as_number</code> 字段的值 <code>mz</code>，接下来的工作和前面非常类似，这里不再解释。如果函数还是没返回，接下来将检查 <code>z</code> 是否为 <code>None</code> 以设置不同提示的 <code>TypeError</code>，最后返回 <code>NULL</code>。</p>
+<p>回到操作码的执行，结果由 <code>res</code> 接收。接下来减少 <code>base</code> 和 <code>exp</code> 的引用计数，并将值栈栈顶值设为 <code>res</code>，如果 <code>res</code> 为 <code>NULL</code>，跳转到错误处理部分，否则执行下一个操作码。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-UNARY_INVERT.html" rel="prev" title="Python操作码——UNARY_INVERT">
+      <i class="fa fa-chevron-left"></i> Python操作码——UNARY_INVERT
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BINARY_MULTIPLY.html" rel="next" title="Python操作码——BINARY_MULTIPLY">
+      Python操作码——BINARY_MULTIPLY <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>

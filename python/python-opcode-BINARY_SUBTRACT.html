@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="不懂怎么学？不学怎么懂！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="BINARY_SUBTRACT 操作码的编号是24，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_SUBTRACT&amp;apos;]24">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BINARY_SUBTRACT">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BINARY_SUBTRACT.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="不懂怎么学？不学怎么懂！">
+<meta property="og:description" content="BINARY_SUBTRACT 操作码的编号是24，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_SUBTRACT&amp;apos;]24">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-15T06:07:23.687Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2019/">
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BINARY_SUBTRACT.html">
 
 
 <script id="page-configurations">
@@ -63,13 +65,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>Python操作码——BINARY_SUBTRACT | 笔记 or 博客</title>
   
 
 
@@ -198,49 +200,111 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BINARY_SUBTRACT.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BINARY_SUBTRACT
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-06-13 23:31:26" itemprop="dateCreated datePublished" datetime="2020-06-13T23:31:26+08:00">2020-06-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-15 14:07:23" itemprop="dateModified" datetime="2020-06-15T14:07:23+08:00">2020-06-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p><code>BINARY_SUBTRACT</code> 操作码的编号是24，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_SUBTRACT'</span>]</span><br><span class="line"><span class="number">24</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这个操作码对应 Python 中的双目运算符 <code>-</code>，实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_SUBTRACT) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *diff = PyNumber_Subtract(left, right);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    SET_TOP(diff);</span><br><span class="line">    <span class="keyword">if</span> (diff == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个操作码与其它的二元运算操作码如 <code>BINARY_MULTIPLY</code> 的区别就是 <code>PyNumber_Subtract</code> 函数，来看这个函数，同样是在 Objects/abstract.c 中定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BINARY_FUNC(PyNumber_Subtract, nb_subtract, <span class="string">"-"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>宏展开之后就变成了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_Subtract(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, NB_SLOT(nb_subtract), <span class="string">"-"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>就是对 <code>binary_op</code> 函数的包装，这个函数已经在 <code>BINARY_MATRIX_MULTIPLY</code> 中分析过了，这里不再重复。<code>NB_SLOT(nb_subtract)</code> 求的是 <code>nb_subtract</code> 字段在 <code>PyNumberMethods</code> 结构体中的偏移量。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T16:46:12+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/pygame-libpng-warning.html" itemprop="url">
-            <span itemprop="name">pygame报libpng warning提示的解决方法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BINARY_ADD.html" rel="prev" title="Python操作码——BINARY_ADD">
+      <i class="fa fa-chevron-left"></i> Python操作码——BINARY_ADD
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>

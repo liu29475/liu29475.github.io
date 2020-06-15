@@ -46,16 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="不懂怎么学？不学怎么懂！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2019&#x2F;index.html">
+  <meta name="description" content="STORE_NANE操作码的编号是90，是一个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;STORE_NAME&amp;apos;]90">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——STORE_NAME">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-STORE_NAME.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="不懂怎么学？不学怎么懂！">
+<meta property="og:description" content="STORE_NANE操作码的编号是90，是一个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;STORE_NAME&amp;apos;]90">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-06-10T15:13:21.936Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2019/">
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-STORE_NAME.html">
 
 
 <script id="page-configurations">
@@ -63,13 +65,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>Python操作码——STORE_NAME | 笔记 or 博客</title>
   
 
 
@@ -198,49 +200,103 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 24 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-STORE_NAME.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——STORE_NAME
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-06-10 23:12:33 / 修改时间：23:13:21" itemprop="dateCreated datePublished" datetime="2020-06-10T23:12:33+08:00">2020-06-10</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
+        <p><code>STORE_NANE</code>操作码的编号是90，是一个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'STORE_NAME'</span>]</span><br><span class="line"><span class="number">90</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这个操作码的作用是将变量名和对应的值保存在局部变量字典中，来看实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">TARGET(STORE_NAME) &#123;</span><br><span class="line">    PyObject *name = GETITEM(names, oparg);</span><br><span class="line">    PyObject *v = POP();</span><br><span class="line">    PyObject *ns = f-&gt;f_locals;</span><br><span class="line">    <span class="keyword">int</span> err;</span><br><span class="line">    <span class="keyword">if</span> (ns == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        PyErr_Format(PyExc_SystemError,</span><br><span class="line">                        <span class="string">"no locals found when storing %R"</span>, name);</span><br><span class="line">        Py_DECREF(v);</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (PyDict_CheckExact(ns))</span><br><span class="line">        err = PyDict_SetItem(ns, name, v);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        err = PyObject_SetItem(ns, name, v);</span><br><span class="line">    Py_DECREF(v);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>首先根据操作码的参数 <code>oparg</code> 在 <code>names</code> 中获取变量的字符串表示 <code>name</code>，接着弹出值栈栈顶的元素 <code>v</code>，然后定义一个 <code>PyObject *</code> 的值 <code>ns</code> 指向帧对象的 <code>f_locals</code> 字段。如果 <code>ns</code> 为 <code>NULL</code>，说明局部命名空间不存在，需要引发一个 <code>SystemError</code>，减少 <code>v</code> 的引用计数，然后跳转到错误处理。</p>
+<p>往下执行，说明<code>ns</code> 确实存在，首先需要检查 <code>ns</code> 是否是一个 <code>dict</code> 对象，由 <code>PyDict_CheckExact</code> 完成。如果是则调用 <code>PyDict_SetItem</code> 为字典 <code>ns</code> 添加键为 <code>name</code> 值为 <code>v</code> 的值，如果 <code>ns</code> 是其它映射对象，则调用 <code>PyObject_SetItem</code> 为 <code>ns</code> 设置键值对。之后减少 <code>v</code> 的引用计数。两个函数在成功都会返回0，所以最后需要检查返回值是否为0，如果不是，则需要跳转到错误处理部分。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-25T16:46:12+08:00"
-              content="2019-11-25">
-          11-25
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
 
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/pygame-libpng-warning.html" itemprop="url">
-            <span itemprop="name">pygame报libpng warning提示的解决方法</span>
-          </a>
-      </h2>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-LOAD_NAME.html" rel="prev" title="Python操作码——LOAD_NAME">
+      <i class="fa fa-chevron-left"></i> Python操作码——LOAD_NAME
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-POP_TOP.html" rel="next" title="Python操作码——POP_TOP">
+      Python操作码——POP_TOP <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
+  
+  
+  
 
-
-    </div>
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
