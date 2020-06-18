@@ -4,6 +4,131 @@
   
     
     <entry>
+      <title>Python操作码——BINARY_OR</title>
+      <link href="/python/python-opcode-BINARY_OR.html"/>
+      <url>/python/python-opcode-BINARY_OR.html</url>
+      
+        <content type="html"><![CDATA[<p><code>BINARY_OR</code> 操作码的编号是66，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_OR'</span>]</span><br><span class="line"><span class="number">66</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>这个操作码对应 Python 的双目运算符 <code>|</code>，一般用于位运算“或”操作，注意不是关键字 <code>or</code>。实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_OR) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Or(left, right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>关键函数 <code>PyNumber_Or</code>，在 Objects/abstract.c 中定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">BINARY_FUNC(PyNumber_Or, nb_or, <span class="string">"|"</span>)</span><br></pre></td></tr></table></figure><p>宏展开之后是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">PyNumber_Or(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, offsetof(PyNumberMethods, nb_or), <span class="string">"|"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对 <code>binary_op</code> 的分析参考 <code>BINARY_MATRIX_MULTIPLY</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python操作码——BINARY_XOR</title>
+      <link href="/python/python-opcode-BINARY_XOR.html"/>
+      <url>/python/python-opcode-BINARY_XOR.html</url>
+      
+        <content type="html"><![CDATA[<p><code>BINARY_XOR</code> 操作码的编号是65，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_XOR'</span>]</span><br><span class="line"><span class="number">65</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>这个操作码对应 Python 的双目运算符 <code>^</code>，一般用于位运算“异或”操作。实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_XOR) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Xor(left, right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>关键函数 <code>PyNumber_Xor</code>。在 Objects/abstract.c 中定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">BINARY_FUNC(PyNumber_Xor, nb_xor, <span class="string">"^"</span>)</span><br></pre></td></tr></table></figure><p>宏展开之后是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">PyNumber_Xor(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, offsetof(PyNumberMethods, nb_xor), <span class="string">"^"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对 <code>binary_op</code> 的分析参考 <code>BINARY_MATRIX_MULTIPLY</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python操作码——BINARY_AND</title>
+      <link href="/python/python-opcode-BINARY_AND.html"/>
+      <url>/python/python-opcode-BINARY_AND.html</url>
+      
+        <content type="html"><![CDATA[<p><code>BINARY_AND</code> 操作码的编号是64，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_AND'</span>]</span><br><span class="line"><span class="number">64</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>这个操作码对应 Python 的双目运算符 <code>&amp;</code>，一般用于位运算“与”操作，注意不是关键字 <code>and</code>。实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_AND) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *res = PyNumber_And(left, right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>直接来看关键的 <code>PyNumber_And</code> 函数吧。在 Objects/abstract.c 中定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">BINARY_FUNC(PyNumber_And, nb_and, <span class="string">"&amp;"</span>)</span><br></pre></td></tr></table></figure><p>宏展开之后是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">PyNumber_And(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, offsetof(PyNumberMethods, nb_and), <span class="string">"&amp;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对 <code>binary_op</code> 的分析参考 <code>BINARY_MATRIX_MULTIPLY</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python操作码——BINARY_RSHIFT</title>
+      <link href="/python/python-opcode-BINARY_RSHIFT.html"/>
+      <url>/python/python-opcode-BINARY_RSHIFT.html</url>
+      
+        <content type="html"><![CDATA[<p><code>BINARY_RSHIFT</code> 操作码的编号是63，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_RSHIFT'</span>]</span><br><span class="line"><span class="number">63</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>这个操作码对应 Python 的双目运算符 <code>&gt;&gt;</code>，一般用于向右移位操作，实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_RSHIFT) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Rshift(left, right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>来看关键的 <code>PyNumber_Rshift</code> 函数，在 Objects/abstract.c 中定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">BINARY_FUNC(PyNumber_Rshift, nb_rshift, <span class="string">"&gt;&gt;"</span>)</span><br></pre></td></tr></table></figure><p>宏展开之后是：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">PyNumber_Rshift(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, offsetof(PyNumberMethods, nb_rshift), <span class="string">"&gt;&gt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>虽然已经在 <code>BINARY_MATRIX_MULTIPLY</code> 中分析过了 <code>binary_op</code>，但是这里还是要提一点，先来看这个函数的实现：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">binary_op(PyObject *v, PyObject *w, <span class="keyword">const</span> <span class="keyword">int</span> op_slot, <span class="keyword">const</span> <span class="keyword">char</span> *op_name)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject *result = binary_op1(v, w, op_slot);</span><br><span class="line">    <span class="keyword">if</span> (result == Py_NotImplemented) &#123;</span><br><span class="line">        Py_DECREF(result);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (op_slot == NB_SLOT(nb_rshift) &amp;&amp;</span><br><span class="line">            PyCFunction_Check(v) &amp;&amp;</span><br><span class="line">            <span class="built_in">strcmp</span>(((PyCFunctionObject *)v)-&gt;m_ml-&gt;ml_name, <span class="string">"print"</span>) == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            PyErr_Format(PyExc_TypeError,</span><br><span class="line">                <span class="string">"unsupported operand type(s) for %.100s: "</span></span><br><span class="line">                <span class="string">"'%.100s' and '%.100s'. Did you mean \"print(&lt;message&gt;, "</span></span><br><span class="line">                <span class="string">"file=&lt;output_stream&gt;)\"?"</span>,</span><br><span class="line">                op_name,</span><br><span class="line">                v-&gt;ob_type-&gt;tp_name,</span><br><span class="line">                w-&gt;ob_type-&gt;tp_name);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> binop_type_error(v, w, op_name);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>在 <code>result == Py_NotImplemented</code> 的条件里，当运算符是 <code>&gt;&gt;</code> 且左操作数是 <code>print</code> 函数的时候，会设置一个特别的 <code>TypeError</code>，来看个示例：</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">print</span> &gt;&gt; <span class="number">1</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">"&lt;stdin&gt;"</span>, line <span class="number">1</span>, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">TypeError: unsupported operand type(s) for &gt;&gt;: 'builtin_function_or_method' and 'int'. Did you mean "print(&lt;message&gt;, file=&lt;output_stream&gt;)"?</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python操作码——BINARY_LSHIFT</title>
+      <link href="/python/python-opcode-BINARY_LSHIFT.html"/>
+      <url>/python/python-opcode-BINARY_LSHIFT.html</url>
+      
+        <content type="html"><![CDATA[<p><code>BINARY_LSHIFT</code> 操作码的编号是62，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_LSHIFT'</span>]</span><br><span class="line"><span class="number">62</span></span><br></pre></td></tr></table></figure><a id="more"></a><p>这个操作码对应 Python 的双目运算符 <code>&lt;&lt;</code>，一般用于向左移位操作，实现如下：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_LSHIFT) &#123;</span><br><span class="line">    PyObject *right = POP();</span><br><span class="line">    PyObject *left = TOP();</span><br><span class="line">    PyObject *res = PyNumber_Lshift(left, right);</span><br><span class="line">    Py_DECREF(left);</span><br><span class="line">    Py_DECREF(right);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>和其它二元运算符操作码的实现非常类似，关键在于 <code>PyNumber_Lshift</code>，这个函数在 Objects/abstract.c 中定义：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">BINARY_FUNC(PyNumber_Lshift, nb_lshift, <span class="string">"&lt;&lt;"</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BINARY_FUNC(func, op, op_name) \</span></span><br><span class="line">    PyObject * \</span><br><span class="line">    func(PyObject *v, PyObject *w) &#123; \</span><br><span class="line">        <span class="keyword">return</span> binary_op(v, w, NB_SLOT(op), op_name); \</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>宏展开后发现就是简单地调用了 <code>binary_op</code>：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> NB_SLOT(x) offsetof(PyNumberMethods, x)</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">PyNumber_Lshift(PyObject *v, PyObject *w) &#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, offsetof(PyNumberMethods, nb_lshift), <span class="string">"&lt;&lt;"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>对 <code>binary_op</code> 的分析参考 <code>BINARY_MATRIX_MULTIPLY</code>。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Python操作码——BINARY_SUBSCR</title>
       <link href="/python/python-opcode-BINARY_SUBSCR.html"/>
       <url>/python/python-opcode-BINARY_SUBSCR.html</url>
