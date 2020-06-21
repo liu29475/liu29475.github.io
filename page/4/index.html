@@ -49,27 +49,27 @@
   <meta name="description" content="不懂怎么学？不学怎么懂！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="笔记 or 博客">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;archives&#x2F;2020&#x2F;06&#x2F;index.html">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;page&#x2F;4&#x2F;index.html">
 <meta property="og:site_name" content="笔记 or 博客">
 <meta property="og:description" content="不懂怎么学？不学怎么懂！">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/archives/2020/06/">
+<link rel="canonical" href="http://liu29475.github.io/page/4/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
+    isHome: true,
     isPost: false,
     isPage: false,
-    isArchive: true
+    isArchive: false
   };
 </script>
 
-  <title>归档 | 笔记 or 博客</title>
+  <title>笔记 or 博客</title>
   
 
 
@@ -198,231 +198,95 @@
           <div class="content">
             
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
+  <div class="posts-expand">
         
-        <span class="collection-header">还行! 目前共计 31 篇日志。 继续努力。</span>
-      </div>
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/pygame-libpng-warning.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/python/pygame-libpng-warning.html" class="post-title-link" itemprop="url">pygame报libpng warning提示的解决方法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-25 16:46:12" itemprop="dateCreated datePublished" datetime="2019-11-25T16:46:12+08:00">2019-11-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-10 21:21:17" itemprop="dateModified" datetime="2020-06-10T21:21:17+08:00">2020-06-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2020</h1>
+          <p>最近在用 <code>pygame</code> 写小游戏时遇到一个问题，在加载 <code>.png</code> 图片的时候，控制台会一直输出 <code>libpng warning: iCCP: known incorrect sRGB profile</code>，虽然程序能跑起来但是看起来实在烦人，也影响调试。所以去搜索了相关问题，在<a href="https://blog.csdn.net/u010212648/article/details/82191419" target="_blank" rel="noopener">这篇博客</a>的评论下找到了解决办法。方法是使用 <code>PyQt5</code> 对图片进行转换。不过我自己尝试发现，直接使用 <code>pygame</code> 对图片进行转换也可以解决。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/python/pygame-libpng-warning.html#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-20T23:40:26+08:00"
-              content="2020-06-20">
-          06-20
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BUILD_LIST.html" itemprop="url">
-            <span itemprop="name">Python操作码——BUILD_LIST</span>
-          </a>
-      </h2>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
+  
+  
+  
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-18T23:35:22+08:00"
-              content="2020-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_OR.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_OR</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-18T23:33:34+08:00"
-              content="2020-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_XOR.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_XOR</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-18T23:31:56+08:00"
-              content="2020-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_AND.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_AND</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-18T23:29:31+08:00"
-              content="2020-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_RSHIFT.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_RSHIFT</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-18T23:24:41+08:00"
-              content="2020-06-18">
-          06-18
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_LSHIFT.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_LSHIFT</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-15T22:59:43+08:00"
-              content="2020-06-15">
-          06-15
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_SUBSCR.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_SUBSCR</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-13T23:31:26+08:00"
-              content="2020-06-13">
-          06-13
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_SUBTRACT.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_SUBTRACT</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-12T23:22:44+08:00"
-              content="2020-06-12">
-          06-12
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_ADD.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_ADD</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-11T23:00:08+08:00"
-              content="2020-06-11">
-          06-11
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/python/python-opcode-BINARY_MODULO.html" itemprop="url">
-            <span itemprop="name">Python操作码——BINARY_MODULO</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-
-    </div>
   </div>
-  
-  
-  
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/06/page/2/">2</a><a class="page-number" href="/archives/2020/06/page/3/">3</a><a class="extend next" rel="next" href="/archives/2020/06/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
   </nav>
 
 
