@@ -46,18 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="BINARY_MODULO 的编号是22，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_MODULO&amp;apos;]22">
+  <meta name="description" content="BUILD_CONST_KEY_MAP 的编号是156，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_CONST_KEY_MAP&amp;apos;]156">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python操作码——BINARY_MODULO">
-<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BINARY_MODULO.html">
+<meta property="og:title" content="Python操作码——BUILD_CONST_KEY_MAP">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BUILD_CONST_KEY_MAP.html">
 <meta property="og:site_name" content="笔记 or 博客">
-<meta property="og:description" content="BINARY_MODULO 的编号是22，是个不带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BINARY_MODULO&amp;apos;]22">
+<meta property="og:description" content="BUILD_CONST_KEY_MAP 的编号是156，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_CONST_KEY_MAP&amp;apos;]156">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-06-11T15:02:29.750Z">
+<meta property="og:updated_time" content="2020-07-11T15:16:51.358Z">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BINARY_MODULO.html">
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BUILD_CONST_KEY_MAP.html">
 
 
 <script id="page-configurations">
@@ -71,7 +71,7 @@
   };
 </script>
 
-  <title>Python操作码——BINARY_MODULO | 笔记 or 博客</title>
+  <title>Python操作码——BUILD_CONST_KEY_MAP | 笔记 or 博客</title>
   
 
 
@@ -205,7 +205,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BINARY_MODULO.html">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BUILD_CONST_KEY_MAP.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Python操作码——BINARY_MODULO
+          Python操作码——BUILD_CONST_KEY_MAP
         </h1>
 
         <div class="post-meta">
@@ -227,10 +227,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-06-11 23:00:08 / 修改时间：23:02:29" itemprop="dateCreated datePublished" datetime="2020-06-11T23:00:08+08:00">2020-06-11</time>
+              <time title="创建时间：2020-07-10 21:54:46" itemprop="dateCreated datePublished" datetime="2020-07-10T21:54:46+08:00">2020-07-10</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-11 23:16:51" itemprop="dateModified" datetime="2020-07-11T23:16:51+08:00">2020-07-11</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -254,20 +260,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><code>BINARY_MODULO</code> 的编号是22，是个不带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BINARY_MODULO'</span>]</span><br><span class="line"><span class="number">22</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+        <p><code>BUILD_CONST_KEY_MAP</code> 的编号是156，是个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BUILD_CONST_KEY_MAP'</span>]</span><br><span class="line"><span class="number">156</span></span><br></pre></td></tr></table></figure><a id="more"></a>
 
 
-<p>这个操作码对应 Python 的双目运算符 <code>%</code>，一般用于取模运算或者字符串格式化。实现如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BINARY_MODULO) &#123;</span><br><span class="line">    PyObject *divisor = POP();</span><br><span class="line">    PyObject *dividend = TOP();</span><br><span class="line">    PyObject *res;</span><br><span class="line">    <span class="keyword">if</span> (PyUnicode_CheckExact(dividend) &amp;&amp; (</span><br><span class="line">            !PyUnicode_Check(divisor) || PyUnicode_CheckExact(divisor))) &#123;</span><br><span class="line">        <span class="comment">// fast path; string formatting, but not if the RHS is a str subclass</span></span><br><span class="line">        <span class="comment">// (see issue28598)</span></span><br><span class="line">        res = PyUnicode_Format(dividend, divisor);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        res = PyNumber_Remainder(dividend, divisor);</span><br><span class="line">    &#125;</span><br><span class="line">    Py_DECREF(divisor);</span><br><span class="line">    Py_DECREF(dividend);</span><br><span class="line">    SET_TOP(res);</span><br><span class="line">    <span class="keyword">if</span> (res == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个操作码在 Python3.6 中引入，和 <code>BUILD_MAP</code> 一样用于创建字典，但是，只有键全部是 Python 中的不可变对象时才会生成这个操作码。一些示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'&#123;1: 10&#125;'</span>)  <span class="comment"># 只包含一个键值对时直接使用BUILD_MAP</span></span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> (<span class="number">1</span>)</span><br><span class="line">              <span class="number">2</span> LOAD_CONST               <span class="number">1</span> (<span class="number">10</span>)</span><br><span class="line">              <span class="number">4</span> BUILD_MAP                <span class="number">1</span></span><br><span class="line">              <span class="number">6</span> RETURN_VALUE</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">"&#123;b'a': 10, b'b': 20&#125;"</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> (<span class="number">10</span>)</span><br><span class="line">              <span class="number">2</span> LOAD_CONST               <span class="number">1</span> (<span class="number">20</span>)</span><br><span class="line">              <span class="number">4</span> LOAD_CONST               <span class="number">2</span> ((<span class="string">b'a'</span>, <span class="string">b'b'</span>))</span><br><span class="line">              <span class="number">6</span> BUILD_CONST_KEY_MAP      <span class="number">2</span></span><br><span class="line">              <span class="number">8</span> RETURN_VALUE</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">"&#123;b'a': 10, b'b': 20, (1, 2): 30&#125;"</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> (<span class="number">10</span>)</span><br><span class="line">              <span class="number">2</span> LOAD_CONST               <span class="number">1</span> (<span class="number">20</span>)</span><br><span class="line">              <span class="number">4</span> LOAD_CONST               <span class="number">2</span> (<span class="number">30</span>)</span><br><span class="line">              <span class="number">6</span> LOAD_CONST               <span class="number">3</span> ((<span class="string">b'a'</span>, <span class="string">b'b'</span>, (<span class="number">1</span>, <span class="number">2</span>)))</span><br><span class="line">              <span class="number">8</span> BUILD_CONST_KEY_MAP      <span class="number">3</span></span><br><span class="line">             <span class="number">10</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
 
-<p>按照惯例，首先获取左右操作数。接下来，和其它双目运算符不同的是，这里会进行判断，是否左操作数是一个字符串对象且右操作数是一个字符串或者是非字符串子类的对象，注意 <code>PyUnicode_Check</code> 和 <code>PyUnicode_CheckExact</code> 的区别（<em>exact</em> 有“精确的”意思）：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyUnicode_CheckExact(op) (Py_TYPE(op) == &amp;PyUnicode_Type)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyUnicode_Check(op) \</span></span><br><span class="line">    PyType_FastSubclass(Py_TYPE(op), Py_TPFLAGS_UNICODE_SUBCLASS)</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyType_FastSubclass(t,f)  PyType_HasFeature(t,f)    </span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyType_HasFeature(t,f)  (((t)-&gt;tp_flags &amp; (f)) != 0)</span></span><br></pre></td></tr></table></figure>
+<p>可以看到，与 <code>BUILD_MAP</code> 不同的是，所有的键被放到了一个元组中，且这个元组是最后压入值栈的，执行到 <code>BUILD_CONST_KEY_MAP</code> 时值栈栈顶的值就是这个元组。底层实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BUILD_CONST_KEY_MAP) &#123;</span><br><span class="line">    Py_ssize_t i;</span><br><span class="line">    PyObject *<span class="built_in">map</span>;</span><br><span class="line">    PyObject *keys = TOP();</span><br><span class="line">    <span class="keyword">if</span> (!PyTuple_CheckExact(keys) ||</span><br><span class="line">        PyTuple_GET_SIZE(keys) != (Py_ssize_t)oparg) &#123;</span><br><span class="line">        PyErr_SetString(PyExc_SystemError,</span><br><span class="line">                        <span class="string">"bad BUILD_CONST_KEY_MAP keys argument"</span>);</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">map</span> = _PyDict_NewPresized((Py_ssize_t)oparg);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">map</span> == <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (i = oparg; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> err;</span><br><span class="line">        PyObject *key = PyTuple_GET_ITEM(keys, oparg - i);</span><br><span class="line">        PyObject *value = PEEK(i + <span class="number">1</span>);</span><br><span class="line">        err = PyDict_SetItem(<span class="built_in">map</span>, key, value);</span><br><span class="line">        <span class="keyword">if</span> (err != <span class="number">0</span>) &#123;</span><br><span class="line">            Py_DECREF(<span class="built_in">map</span>);</span><br><span class="line">            <span class="keyword">goto</span> error;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Py_DECREF(POP());</span><br><span class="line">    <span class="keyword">while</span> (oparg--) &#123;</span><br><span class="line">        Py_DECREF(POP());</span><br><span class="line">    &#125;</span><br><span class="line">    PUSH(<span class="built_in">map</span>);</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>如果整个 <code>if</code> 条件为真，将会调用 <code>PyUnicode_Format</code> 进行字符串格式化，否则调用 <code>PyNumber_Remainder</code> 进行运算。往下，减少左右操作数的引用计数，将值栈栈顶的值设为函数的返回值 <code>res</code>，接着检查 <code>res</code> 以确定是跳转到错误处理还是执行下一个操作码。</p>
-<p><code>PyUnicode_Format</code> 在 Objects/unicodeobject.c 中定义，这里不展开。主要来看 <code>PyNumber_Remainder</code>，在 Objects/abstract.c 中定义：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PyNumber_Remainder(PyObject *v, PyObject *w)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> binary_op(v, w, NB_SLOT(nb_remainder), <span class="string">"%"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>可以看到，这个函数就是对 <code>binary_op</code> 的包装，<code>NB_SLOT(nb_remainder)</code> 是获取 <code>nb_remainder</code> 在 <code>PyNumberMethods</code> 结构体中的偏移量。对 <code>binary_op</code> 的分析参考 <code>BINARY_MATRIX_MULTIPLY</code>。</p>
+<p>首先获取值栈栈顶值，也就是所有的键组成的元组，然后检查这个值是否是真的元组，且元组长度等于操作码的参数值（操作码的参数值是键值对的数量）。如果不是则设置 <code>SystemError</code> 异常并跳转到错误处理。</p>
+<p>往下，调用 <code>_PyDict_NewPresized</code> 创建字典，这个函数的分析参考 <code>BUILD_MAP</code>。如果创建失败则跳转到错误处理。创建成功则循环地从元组和值栈中获取对应的键和值，然后调用 <code>PyDict_SetItem</code> 为字典设置键值对，如果 <code>PyDict_SetItem</code> 执行过程中引发了异常则停止设置并跳转到错误处理。</p>
+<p>最后将键组成的元组和所有的值从值栈中弹出，并将设置好的字典压入值栈中供后续的操作码使用。</p>
 
     </div>
 
@@ -287,13 +291,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/python/python-opcode-BINARY_FLOOR_DIVIDE.html" rel="prev" title="Python操作码——BINARY_FLOOR_DIVIDE">
-      <i class="fa fa-chevron-left"></i> Python操作码——BINARY_FLOOR_DIVIDE
+    <a href="/python/python-opcode-BUILD_LIST_UNPACK.html" rel="prev" title="Python操作码——BUILD_LIST_UNPACK">
+      <i class="fa fa-chevron-left"></i> Python操作码——BUILD_LIST_UNPACK
     </a></div>
-      <div class="post-nav-item">
-    <a href="/python/python-opcode-BINARY_ADD.html" rel="next" title="Python操作码——BINARY_ADD">
-      Python操作码——BINARY_ADD <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     

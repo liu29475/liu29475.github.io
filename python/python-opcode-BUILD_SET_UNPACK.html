@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="BUILD_SET_UNPACK 操作码的编号是153，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_SET_UNPACK&amp;apos;]153">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BUILD_SET_UNPACK">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BUILD_SET_UNPACK.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="BUILD_SET_UNPACK 操作码的编号是153，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_SET_UNPACK&amp;apos;]153">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-07-11T15:15:20.655Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BUILD_SET_UNPACK.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——BUILD_SET_UNPACK | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">38</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BUILD_SET_UNPACK.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BUILD_SET_UNPACK
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-06 23:48:13" itemprop="dateCreated datePublished" datetime="2020-07-06T23:48:13+08:00">2020-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-11 23:15:20" itemprop="dateModified" datetime="2020-07-11T23:15:20+08:00">2020-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>BUILD_SET_UNPACK</code> 操作码的编号是153，是个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BUILD_SET_UNPACK'</span>]</span><br><span class="line"><span class="number">153</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>这是 Python3.5 新增的操作码，诸如 <code>{*(1, 2, 3)}</code> 这样的语法会生成这个操作码，<code>*</code> 后面跟着的是一个可迭代的对象，这里相当于 <code>set((1, 2, 3))</code>。一些用法示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;*(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)&#125;</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'&#123;*(1, 2, 3)&#125;'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">              <span class="number">2</span> BUILD_SET_UNPACK         <span class="number">1</span></span><br><span class="line">              <span class="number">4</span> RETURN_VALUE</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>             </span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;*(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), *(<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>)&#125;</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'&#123;*(1, 2, 3), *(4, 5, 6)&#125;'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">              <span class="number">2</span> LOAD_CONST               <span class="number">1</span> ((<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>))</span><br><span class="line">              <span class="number">4</span> BUILD_SET_UNPACK         <span class="number">2</span></span><br><span class="line">              <span class="number">6</span> RETURN_VALUE      </span><br><span class="line">&gt;&gt;&gt;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>&#123;*(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>), <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line">&#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'&#123;*(1, 2, 3), 4, 5, 6&#125;'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line">              <span class="number">2</span> LOAD_CONST               <span class="number">1</span> (<span class="number">4</span>)</span><br><span class="line">              <span class="number">4</span> LOAD_CONST               <span class="number">2</span> (<span class="number">5</span>)</span><br><span class="line">              <span class="number">6</span> LOAD_CONST               <span class="number">3</span> (<span class="number">6</span>)</span><br><span class="line">              <span class="number">8</span> BUILD_SET                <span class="number">3</span></span><br><span class="line">             <span class="number">10</span> BUILD_SET_UNPACK         <span class="number">2</span></span><br><span class="line">             <span class="number">12</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
+
+<p>来看它的具体实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BUILD_SET_UNPACK) &#123;</span><br><span class="line">    Py_ssize_t i;</span><br><span class="line">    PyObject *sum = PySet_New(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (sum == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = oparg; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">if</span> (_PySet_Update(sum, PEEK(i)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            Py_DECREF(sum);</span><br><span class="line">            <span class="keyword">goto</span> error;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (oparg--)</span><br><span class="line">        Py_DECREF(POP());</span><br><span class="line">    PUSH(sum);</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开头会调用 <code>PySet_New</code> 函数并传入 <code>NULL</code> 创建空集合，<code>PySet_New</code> 的分析参考 <code>BUILD_SET</code> 操作码。如果返回值为 <code>NULL</code>，表示创建失败，跳转到错误处理。</p>
+<p>往下，<code>oparg</code> 是操作码的参数，表示所有可迭代对象的数量。通过 <code>PEEK</code> 宏从值栈中获取这些可迭代对象，并将它们作为参数传入 <code>_PySet_Update</code> 函数更新集合 <code>sum</code>。函数实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Objects/setobject.c */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span></span><br><span class="line">_PySet_Update(PyObject *<span class="built_in">set</span>, PyObject *iterable)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!PySet_Check(<span class="built_in">set</span>)) &#123;</span><br><span class="line">        PyErr_BadInternalCall();</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> set_update_internal((PySetObject *)<span class="built_in">set</span>, iterable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数只是对 <code>set_update_internal</code> 函数的包装，在调用 <code>set_update_internal</code> 前对参数进行检查，确保第一个参数是集合类型或者是集合类型的子类。<code>set_update_internal</code> 的实现如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Objects/setobject.c */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line">set_update_internal(PySetObject *so, PyObject *other)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject *key, *it;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PyAnySet_Check(other))</span><br><span class="line">        <span class="keyword">return</span> set_merge(so, other);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (PyDict_CheckExact(other)) &#123;</span><br><span class="line">        PyObject *value;</span><br><span class="line">        Py_ssize_t pos = <span class="number">0</span>;</span><br><span class="line">        Py_hash_t hash;</span><br><span class="line">        Py_ssize_t dictsize = PyDict_GET_SIZE(other);</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 在开始时进行一次大的调整大小，而不是在插入新键时</span></span><br><span class="line"><span class="comment">         * 逐步调整大小。期望没有(或很少)重叠键。</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">if</span> (dictsize &lt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span> ((so-&gt;<span class="built_in">fill</span> + dictsize)*<span class="number">5</span> &gt;= so-&gt;mask*<span class="number">3</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (set_table_resize(so, (so-&gt;used + dictsize)*<span class="number">2</span>) != <span class="number">0</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (_PyDict_Next(other, &amp;pos, &amp;key, &amp;value, &amp;hash)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (set_add_entry(so, key, hash))</span><br><span class="line">                <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    it = PyObject_GetIter(other);</span><br><span class="line">    <span class="keyword">if</span> (it == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ((key = PyIter_Next(it)) != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (set_add_key(so, key)) &#123;</span><br><span class="line">            Py_DECREF(it);</span><br><span class="line">            Py_DECREF(key);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Py_DECREF(key);</span><br><span class="line">    &#125;</span><br><span class="line">    Py_DECREF(it);</span><br><span class="line">    <span class="keyword">if</span> (PyErr_Occurred())</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数开头通过 <code>PyAnySet_Check</code> 宏检查第二个参数 <code>other</code> 是否集合类型、集合类型的子类、冻结集合与冻结集合的子类中的一个，如果是则调用 <code>set_merge</code> 合并两个集合。<code>PySet_Check</code> 与 <code>PyAnySet_Check</code> 的区别如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyAnySet_Check(ob) \</span></span><br><span class="line">    (Py_TYPE(ob) == &amp;PySet_Type || Py_TYPE(ob) == &amp;PyFrozenSet_Type || \</span><br><span class="line">      PyType_IsSubtype(Py_TYPE(ob), &amp;PySet_Type) || \</span><br><span class="line">      PyType_IsSubtype(Py_TYPE(ob), &amp;PyFrozenSet_Type))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PySet_Check(ob) \</span></span><br><span class="line">    (Py_TYPE(ob) == &amp;PySet_Type || \</span><br><span class="line">    PyType_IsSubtype(Py_TYPE(ob), &amp;PySet_Type))</span><br></pre></td></tr></table></figure>
+
+<p>往下，检查 <code>other</code> 是否是字典类型，如果是，获取它的大小 <code>dictsize</code>，然后检查 <code>fill</code> 字段的值和 <code>dictsize</code> 之和与 <code>mask</code> 字段的值的比例是否超过3/5，超过了则调用 <code>set_table_resize</code> 重新调整表的大小。调整成功，调用 <code>_PyDict_Next</code> 获取字典的键，然后再调用 <code>set_add_entry</code> 将键添加到集合中。</p>
+<blockquote>
+<p>集合的 <code>table</code>/<code>smalltable</code> 字段保存值，值有三种状态：Unused、Dummy、Active。设 sum 函数是求个状态值的数量则有如下关系：</p>
+<ul>
+<li><code>mask + 1 == sum(Unused) + sum(Dummy) + sum(Active)</code></li>
+<li><code>used == sum(Active)</code></li>
+<li><code>fill == sum(Active) + sum(Dummy)</code></li>
+</ul>
+</blockquote>
+<p>如果 <code>other</code> 不是字典类型，调用 <code>PyObject_GetIter</code> 获取 <code>other</code> 的迭代器，相当于 <code>it = iter(other)</code>，迭代器为 <code>NULL</code> 则直接返回，否则调用 <code>PyIter_Next</code> 获取值，相当于 <code>key = next(it)</code>。只要 <code>key</code> 不为 <code>NULL</code> 且 <code>set_add_key</code> 调用成功，就不断地为集合添加值，如果中间添加失败则返回-1。最后，添加完毕，调用 <code>PyErr_Occurred</code> 检查整个函数的执行有没有引发异常，没有则返回0表示调用成功。</p>
+<p>回到操作码的执行，如果 <code>_PySet_Update</code> 返回的是-1则跳转到错误处理。最后，新集合更新完毕，从值栈中弹出 <code>oparg</code> 个值，再将新集合 <code>sum</code> 压入值栈中供后续的操作码使用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_MAP.html" rel="prev" title="Python操作码——BUILD_MAP">
+      <i class="fa fa-chevron-left"></i> Python操作码——BUILD_MAP
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_LIST_UNPACK.html" rel="next" title="Python操作码——BUILD_LIST_UNPACK">
+      Python操作码——BUILD_LIST_UNPACK <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>

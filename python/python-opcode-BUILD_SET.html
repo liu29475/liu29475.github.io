@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="BUILD_SET 操作码的编号是104，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_SET&amp;apos;]104">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BUILD_SET">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BUILD_SET.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="BUILD_SET 操作码的编号是104，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_SET&amp;apos;]104">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-07-11T15:13:18.104Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BUILD_SET.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——BUILD_SET | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">38</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BUILD_SET.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BUILD_SET
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-02 23:36:24" itemprop="dateCreated datePublished" datetime="2020-07-02T23:36:24+08:00">2020-07-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-11 23:13:18" itemprop="dateModified" datetime="2020-07-11T23:13:18+08:00">2020-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>BUILD_SET</code> 操作码的编号是104，是个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BUILD_SET'</span>]</span><br><span class="line"><span class="number">104</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>使用 <code>{}</code> 创建集合是会生成这个操作码，注意，<code>{}</code> 中一定要包含值，否则创建出来的是空字典。要创建空集合需要调用构造器 <code>set()</code>，不过调用 <code>set()</code> 生成的操作码是 <code>CALL_FUNCTION</code> 而不是 <code>BUILD_SET</code>。</p>
+<p>来看看它的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BUILD_SET) &#123;</span><br><span class="line">    PyObject *<span class="built_in">set</span> = PySet_New(<span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">int</span> err = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">set</span> == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    <span class="keyword">for</span> (i = oparg; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        PyObject *item = PEEK(i);</span><br><span class="line">        <span class="keyword">if</span> (err == <span class="number">0</span>)</span><br><span class="line">            err = PySet_Add(<span class="built_in">set</span>, item);</span><br><span class="line">        Py_DECREF(item);</span><br><span class="line">    &#125;</span><br><span class="line">    STACKADJ(-oparg);</span><br><span class="line">    <span class="keyword">if</span> (err != <span class="number">0</span>) &#123;</span><br><span class="line">        Py_DECREF(<span class="built_in">set</span>);</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    &#125;</span><br><span class="line">    PUSH(<span class="built_in">set</span>);</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>开头直接调用了 <code>PySet_New</code>，这是底层创建集合对象的函数，传入参数 <code>NULL</code> 表示创建一个空集合。来看看这个函数的实现，在 Objects/setobject.c 中定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">PyObject *</span><br><span class="line">PySet_New(PyObject *iterable)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> make_new_set(&amp;PySet_Type, iterable);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到这个函数只是对 <code>make_new_set</code> 的简单包装，创建集合和冻结集合都会调用这个函数，它的第一个参数表示类型。这里传入的就是集合类型。</p>
+<p>在分析这个函数之前先来看看定义集合类型的结构体：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PySet_MINSIZE 8</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PyObject *key;</span><br><span class="line">    Py_hash_t hash;             <span class="comment">/* 缓存key的哈希码 */</span></span><br><span class="line">&#125; setentry;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PyObject_HEAD</span><br><span class="line"></span><br><span class="line">    Py_ssize_t <span class="built_in">fill</span>;            <span class="comment">/* 有效的和虚拟的条目的数量 */</span></span><br><span class="line">    Py_ssize_t used;            <span class="comment">/* 有效的条目的数量 */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 表中包含mask + 1个槽，且是2的乘方。</span></span><br><span class="line"><span class="comment">     * 我们保存mask而不是表的大小是因为mask更常用。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    Py_ssize_t mask;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 如果表较小则table指向固定大小的smalltable。</span></span><br><span class="line"><span class="comment">     * 如果表较大则指向额外分配的内存。</span></span><br><span class="line"><span class="comment">     * table指针不会为空，这使我们避免了重复的运行时null测试。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    setentry *table;</span><br><span class="line">    Py_hash_t hash;             <span class="comment">/* 仅用于frozenset对象 */</span></span><br><span class="line">    Py_ssize_t finger;          <span class="comment">/* 用于pop()的搜索指针 */</span></span><br><span class="line"></span><br><span class="line">    setentry smalltable[PySet_MINSIZE];</span><br><span class="line">    PyObject *weakreflist;      <span class="comment">/* 弱引用列表 */</span></span><br><span class="line">&#125; PySetObject;</span><br></pre></td></tr></table></figure>
+
+<p>简单解释一些字段，<code>setentry</code> 是存储集合对象单个元素的结构体。集合的所有元素保存在 <code>table</code> 中，当集合中的元素的数量不大于8时，则会保存在 <code>smalltable</code> 中，此时 <code>table</code> 会指向 <code>smalltable</code>。如果集合中元素的数量大于8，则 <code>table</code> 会指向额外分配的内存。<code>table</code> 的总大小是 <code>mask + 1</code>，集合对象元素的数量由 <code>used</code> 维护，<code>fill</code> 字段则是集合元素的数量与 <code>table</code> 中被标记为 <code>dummy</code> 的槽的数量的和。</p>
+<p>现在开始 <code>make_new_set</code> 函数的分析。先来看它的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">make_new_set(PyTypeObject *type, PyObject *iterable)</span><br><span class="line">&#123;</span><br><span class="line">    PySetObject *so;</span><br><span class="line"></span><br><span class="line">    so = (PySetObject *)type-&gt;tp_alloc(type, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span> (so == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    so-&gt;<span class="built_in">fill</span> = <span class="number">0</span>;</span><br><span class="line">    so-&gt;used = <span class="number">0</span>;</span><br><span class="line">    so-&gt;mask = PySet_MINSIZE - <span class="number">1</span>;</span><br><span class="line">    so-&gt;table = so-&gt;smalltable;</span><br><span class="line">    so-&gt;hash = <span class="number">-1</span>;</span><br><span class="line">    so-&gt;finger = <span class="number">0</span>;</span><br><span class="line">    so-&gt;weakreflist = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (iterable != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (set_update_internal(so, iterable)) &#123;</span><br><span class="line">            Py_DECREF(so);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (PyObject *)so;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>type-&gt;tp_alloc</code> 指向的是 <code>PyType_GenericAlloc</code> 函数，这是 Python 底层通用的对象内存分配函数，第二个参数是元素的数量，这里要创建的是空集合，所以为0。如果函数返回 <code>NULL</code> 则说明内存分配失败，所以 <code>make_new_set</code> 也返回 <code>NULL</code>。不为 <code>NULL</code> 说明内存分配成功，所以往下对结构体的字段进行设置。再往下检查参数 <code>iterable</code> 的值，不为 <code>NULL</code> 会调用 <code>set_update_internal</code> 为这个新创建的集合对象设置值。这里 <code>iterable</code> 为 <code>NULL</code>，暂时不深入这个函数（有空我会写一遍文章详细分析所有的步骤）。最后，返回集合对象。</p>
+<p>回到操作码的执行，返回值 <code>set</code> 为 <code>NULL</code> 则直接跳转到错误处理。往下，<code>oparg</code> 是操作码的参数，表示要创建的集合对象的元素的数量。集合中的元素早已先压入了值栈，这里通过一个循环，使用 <code>PEEK</code> 宏：<code>#define PEEK(n) (stack_pointer[-(n)])</code> 获取值栈中属于集合的元素，调用 <code>PySet_Add</code> 函数为集合设置值。<code>PySet_Add</code> 执行成功时返回值为0，所以只要返回值为0就会执行直到设置完成。</p>
+<p>设置完成，使用 <code>STACKADJ</code> 宏调整值栈栈顶指针，将值栈中的集合的元素全部弹出。如果 <code>err</code> 不为0，说明设置值的过程中引发了异常，所以跳转到错误处理；否则，将集合对象压入值栈中，供后面的操作码使用。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_STRING.html" rel="prev" title="Python操作码——BUILD_STRING">
+      <i class="fa fa-chevron-left"></i> Python操作码——BUILD_STRING
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_MAP.html" rel="next" title="Python操作码——BUILD_MAP">
+      Python操作码——BUILD_MAP <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>

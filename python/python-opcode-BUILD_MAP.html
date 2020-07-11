@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="笔记 or 博客" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"hide","offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="BUILD_MAP 操作码的编号是105，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_MAP&amp;apos;]105">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python操作码——BUILD_MAP">
+<meta property="og:url" content="http:&#x2F;&#x2F;liu29475.github.io&#x2F;python&#x2F;python-opcode-BUILD_MAP.html">
+<meta property="og:site_name" content="笔记 or 博客">
+<meta property="og:description" content="BUILD_MAP 操作码的编号是105，是个带参数的操作码。12&amp;gt;&amp;gt;&amp;gt; dis.opmap[&amp;apos;BUILD_MAP&amp;apos;]105">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-07-11T15:18:41.691Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://liu29475.github.io/python/python-opcode-BUILD_MAP.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Python操作码——BUILD_MAP | 笔记 or 博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">笔记 or 博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">38</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://liu29475.github.io/python/python-opcode-BUILD_MAP.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="L.Y.">
+      <meta itemprop="description" content="不懂怎么学？不学怎么懂！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="笔记 or 博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python操作码——BUILD_MAP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-04 22:50:45" itemprop="dateCreated datePublished" datetime="2020-07-04T22:50:45+08:00">2020-07-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-11 23:18:41" itemprop="dateModified" datetime="2020-07-11T23:18:41+08:00">2020-07-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><code>BUILD_MAP</code> 操作码的编号是105，是个带参数的操作码。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.opmap[<span class="string">'BUILD_MAP'</span>]</span><br><span class="line"><span class="number">105</span></span><br></pre></td></tr></table></figure><a id="more"></a>
+
+
+<p>使用 <code>{}</code> 创建字典时会生成这个操作码，一个简单的示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>dis.dis(<span class="string">'a, b =1, 2;d = &#123;a: 10, b: 20&#125;'</span>)</span><br><span class="line">  <span class="number">1</span>           <span class="number">0</span> LOAD_CONST               <span class="number">0</span> ((<span class="number">1</span>, <span class="number">2</span>))</span><br><span class="line">              <span class="number">2</span> UNPACK_SEQUENCE          <span class="number">2</span></span><br><span class="line">              <span class="number">4</span> STORE_NAME               <span class="number">0</span> (a)</span><br><span class="line">              <span class="number">6</span> STORE_NAME               <span class="number">1</span> (b)</span><br><span class="line">              <span class="number">8</span> LOAD_NAME                <span class="number">0</span> (a)</span><br><span class="line">             <span class="number">10</span> LOAD_CONST               <span class="number">1</span> (<span class="number">10</span>)</span><br><span class="line">             <span class="number">12</span> LOAD_NAME                <span class="number">1</span> (b)</span><br><span class="line">             <span class="number">14</span> LOAD_CONST               <span class="number">2</span> (<span class="number">20</span>)</span><br><span class="line">             <span class="number">16</span> BUILD_MAP                <span class="number">2</span></span><br><span class="line">             <span class="number">18</span> STORE_NAME               <span class="number">2</span> (d)</span><br><span class="line">             <span class="number">20</span> LOAD_CONST               <span class="number">3</span> (<span class="literal">None</span>)</span><br><span class="line">             <span class="number">22</span> RETURN_VALUE</span><br></pre></td></tr></table></figure>
+
+<p>从序号8开始，会将键值对依序压入值栈中，序号16的 <code>BUILD_MAP</code> 创建字典，这里操作码的参数为2，表示有两个键值对。来看它的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">TARGET(BUILD_MAP) &#123;</span><br><span class="line">    Py_ssize_t i;</span><br><span class="line">    PyObject *<span class="built_in">map</span> = _PyDict_NewPresized((Py_ssize_t)oparg);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">map</span> == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">goto</span> error;</span><br><span class="line">    <span class="keyword">for</span> (i = oparg; i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> err;</span><br><span class="line">        PyObject *key = PEEK(<span class="number">2</span>*i);</span><br><span class="line">        PyObject *value = PEEK(<span class="number">2</span>*i - <span class="number">1</span>);</span><br><span class="line">        err = PyDict_SetItem(<span class="built_in">map</span>, key, value);</span><br><span class="line">        <span class="keyword">if</span> (err != <span class="number">0</span>) &#123;</span><br><span class="line">            Py_DECREF(<span class="built_in">map</span>);</span><br><span class="line">            <span class="keyword">goto</span> error;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (oparg--) &#123;</span><br><span class="line">        Py_DECREF(POP());</span><br><span class="line">        Py_DECREF(POP());</span><br><span class="line">    &#125;</span><br><span class="line">    PUSH(<span class="built_in">map</span>);</span><br><span class="line">    DISPATCH();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数 <code>_PyDict_NewPresized</code> 用于创建预分配内存的空字典，参数是字典包含的键值对的数量。在分析这个函数前，先来简单了解定义字典对象的结构体。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Objects/dict-common.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    <span class="comment">/* 缓存me_key的hash码 */</span></span><br><span class="line">    Py_hash_t me_hash;</span><br><span class="line">    PyObject *me_key;</span><br><span class="line">    PyObject *me_value; <span class="comment">/* 此字段仅对合并表有意义 */</span></span><br><span class="line">&#125; PyDictKeyEntry;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* dict_lookup_func()返回条目索引可以像DK_ENTRIES(dk)[index]那样使用。当没有找到条目时返回-1，当比较出现错误时返回-3。*/</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">Py_ssize_t</span> <span class="params">(*dict_lookup_func)</span></span></span><br><span class="line"><span class="function">    <span class="params">(PyDictObject *mp, PyObject *key, Py_hash_t hash, PyObject **value_addr)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DKIX_EMPTY (-1)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DKIX_DUMMY (-2)  <span class="comment">/* 在内部使用 */</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DKIX_ERROR (-3)</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> _<span class="title">dictkeysobject</span> &#123;</span></span><br><span class="line">    Py_ssize_t dk_refcnt;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* hash表(dk_indices)的大小，必须是2的乘方。*/</span></span><br><span class="line">    Py_ssize_t dk_size;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 在hash表(dk_indices)中检查的函数：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - lookdict()：通用的，当(且仅当)比较引发异常时，可能返回DKIX_ERROR。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - lookdict_unicode()：专用于键是unicode字符串，它的比较永远不会引发异常，该函数永远不能返回DKIX_ERROR。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - lookdict_unicode_nodummy()：类似于lookdict_unicode()，但专门用于键是unicode字符串而值不是&lt;dummy&gt;。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - lookdict_split()；用于分割表的lookdict()版本。 */</span></span><br><span class="line">    dict_lookup_func dk_lookup;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* dk_entries中可用的条目的数量。*/</span></span><br><span class="line">    Py_ssize_t dk_usable;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* dk_entries中已用的条目的数量。 */</span></span><br><span class="line">    Py_ssize_t dk_nentries;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* dk_size条目的实际hash表。它保存dk_entries的索引或DKIX_EMPTY(-1)或DKIX_DUMMY(-2)。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       索引必须为：0 &lt;= indice &lt; USABLE_FRACTION(dk_size).</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       索引的字节大小取决于dk_size:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       - 1字节如果 dk_size &lt;= 0xff (char*)</span></span><br><span class="line"><span class="comment">       - 2字节如果 dk_size &lt;= 0xffff (int16_t*)</span></span><br><span class="line"><span class="comment">       - 4字节如果 dk_size &lt;= 0xffffffff (int32_t*)</span></span><br><span class="line"><span class="comment">       - 8字节 其他情况 (int64_t*)</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">       动态大小，最小值是SIZEOF_VOID_P。*/</span></span><br><span class="line">    <span class="keyword">char</span> dk_indices[];  <span class="comment">/* 必须为char以避免 strict aliasing. */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* "PyDictKeyEntry dk_entries[dk_usable];" 数组如下：参见DK_ENTRIES()宏 */</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Include/dictobject.h</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">dictkeysobject</span> <span class="title">PyDictKeysObject</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 对于合并表，ma_values指针为空。</span></span><br><span class="line"><span class="comment"> * 对于分割表，ma_values指针指向PyObject*数组。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">    PyObject_HEAD</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 字典中条目的数量 */</span></span><br><span class="line">    Py_ssize_t ma_used;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 字典版本:全局唯一，值在每次修改字典时改变。*/</span></span><br><span class="line">    <span class="keyword">uint64_t</span> ma_version_tag;</span><br><span class="line"></span><br><span class="line">    PyDictKeysObject *ma_keys;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 如果ma_values是NULL, 表是“合并的”：</span></span><br><span class="line"><span class="comment">     * 键和值都存储在ma_keys中。</span></span><br><span class="line"><span class="comment">     * 如果ma_values不是NULL, 表时分开的：</span></span><br><span class="line"><span class="comment">     * 键存储在ma_keys中而值存储在ma_values中。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    PyObject **ma_values;</span><br><span class="line">&#125; PyDictObject;</span><br></pre></td></tr></table></figure>
+
+<p>根据源码的注释，这些字段的作用不言自明，字典主要有两种形式：</p>
+<ul>
+<li><p>合并表：<code>ma_values == NULL, dk_refcnt == 1</code>，值存储在 <code>PyDictKeysObject</code> 的 <code>me_value</code> 字段中。</p>
+</li>
+<li><p>分割表：<code>ma_values != NULL, dk_refcnt &gt;= 1</code>，值存储在 <code>ma_values</code> 数组中。键只能是字符串。</p>
+</li>
+</ul>
+<p>表中有四种槽，槽即是索引（<code>index</code>），如果<code>index &gt;= 0</code>，则<code>DK_ENTRIES(key)[index])</code>，这四种槽分别为：</p>
+<ol>
+<li><p><strong>Unused</strong>。<code>index == DKIX_EMPTY</code>，从未保存过键值对。这是每个槽的初始状态，当插入键时将会转换成 <strong>Active</strong> 状态。</p>
+</li>
+<li><p><strong>Active</strong>。<code>index &gt;= 0, me_key != NULL, me_value != NULL</code>，保存活跃的键值对。<strong>Active</strong> 可以在删除键时转换为 <strong>Dummy</strong> 或 <strong>Pending</strong> 状态（分别用于合并表和分割表）。这是 <code>me_value != NULL</code> 的唯一情况。</p>
+</li>
+<li><p><strong>Dummy</strong>。<code>index == DKIX_DUMMY</code>（仅用于合并表），曾经保存一个活跃的键值对，但已删除，目前还没被活跃的键值对覆盖。插入键时 <strong>Dummy</strong> 可以转换成 <strong>Active</strong>。<strong>Dummy</strong> 槽不能再转换成 <strong>Unused</strong>，否则在碰撞的情况下探测序列将无法知道它们曾经是 <strong>Active</strong>。</p>
+</li>
+<li><p><strong>Pending</strong>。<code>index &gt;= 0, key != NULL, value == NULL</code>（仅用于分割表），分割表中尚未插入的槽。</p>
+</li>
+</ol>
+<p>来看 <code>_PyDict_NewPresized</code> 函数的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Objects/dictobject.c</span></span><br><span class="line"></span><br><span class="line">PyObject *</span><br><span class="line">_PyDict_NewPresized(Py_ssize_t minused)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">const</span> Py_ssize_t max_presize = <span class="number">128</span> * <span class="number">1024</span>;</span><br><span class="line">    Py_ssize_t newsize;</span><br><span class="line">    PyDictKeysObject *new_keys;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* 不能严格保证返回的dict在不调整大小的情况下可以</span></span><br><span class="line"><span class="comment">     * 包含minused大小的项。所以我们创建了中等大小的字典</span></span><br><span class="line"><span class="comment">     * 而不是非常大的字典或MemoryError。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">if</span> (minused &gt; USABLE_FRACTION(max_presize)) &#123;</span><br><span class="line">        newsize = max_presize;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Py_ssize_t minsize = ESTIMATE_SIZE(minused);</span><br><span class="line">        newsize = PyDict_MINSIZE;</span><br><span class="line">        <span class="keyword">while</span> (newsize &lt; minsize) &#123;</span><br><span class="line">            newsize &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    assert(IS_POWER_OF_2(newsize));</span><br><span class="line"></span><br><span class="line">    new_keys = new_keys_object(newsize);</span><br><span class="line">    <span class="keyword">if</span> (new_keys == <span class="literal">NULL</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    <span class="keyword">return</span> new_dict(new_keys, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>max_presize</code> 是最大的预留大小，<code>USABLE_FRACTION</code> 是一个宏，用于计算字典的最大负载——为字典中槽的数量的2/3，字典中键值对的数量超过这个值时会重新调整大小。如果参数 <code>minused</code> 超过 <code>max_presize</code> 的2/3，则预留大小 <code>newsize</code> 直接等于 <code>max_presize</code>；否则，通过 <code>ESTIMATE_SIZE</code> 宏计算预留大小。<code>ESTIMATE_SIZE</code> 宏是 <code>USABLE_FRACTION</code> 宏的反向。<code>PyDict_MINSIZE</code> 也是一个宏，如果 <code>minsize</code> 大于 <code>newsize</code>，则不断将 <code>newsize</code> 左移一位直到它大于 <code>minsize</code>，这样保证了 <code>newsize</code> 是2的乘方。几个宏的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> USABLE_FRACTION(n) (((n) &lt;&lt; 1)/3)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ESTIMATE_SIZE(n) (((n)*3+1) &gt;&gt; 1)</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyDict_MINSIZE 8</span></span><br></pre></td></tr></table></figure>
+
+<p>往下，确保 <code>newsize</code> 是2的乘方，宏 <code>IS_POWER_OF_2</code> 定义如下：<code>#define IS_POWER_OF_2(x) (((x) &amp; (x-1)) == 0)</code>。然后，调用 <code>new_keys_object</code> 函数创建并初始化 <code>PyDictKeysObject</code> 结构。函数定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Objects/dictobject.c</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> PyDictKeysObject *<span class="title">new_keys_object</span><span class="params">(Py_ssize_t <span class="built_in">size</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    PyDictKeysObject *dk;</span><br><span class="line">    Py_ssize_t es, usable;</span><br><span class="line"></span><br><span class="line">    assert(<span class="built_in">size</span> &gt;= PyDict_MINSIZE);</span><br><span class="line">    assert(IS_POWER_OF_2(<span class="built_in">size</span>));</span><br><span class="line"></span><br><span class="line">    usable = USABLE_FRACTION(<span class="built_in">size</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">size</span> &lt;= <span class="number">0xff</span>) &#123;</span><br><span class="line">        es = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">size</span> &lt;= <span class="number">0xffff</span>) &#123;</span><br><span class="line">        es = <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> SIZEOF_VOID_P &gt; 4</span></span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">size</span> &lt;= <span class="number">0xffffffff</span>) &#123;</span><br><span class="line">        es = <span class="number">4</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        es = <span class="keyword">sizeof</span>(Py_ssize_t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">size</span> == PyDict_MINSIZE &amp;&amp; numfreekeys &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        dk = keys_free_list[--numfreekeys];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        dk = PyObject_MALLOC(<span class="keyword">sizeof</span>(PyDictKeysObject)</span><br><span class="line">                             + es * <span class="built_in">size</span></span><br><span class="line">                             + <span class="keyword">sizeof</span>(PyDictKeyEntry) * usable);</span><br><span class="line">        <span class="keyword">if</span> (dk == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            PyErr_NoMemory();</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    DK_DEBUG_INCREF dk-&gt;dk_refcnt = <span class="number">1</span>;</span><br><span class="line">    dk-&gt;dk_size = <span class="built_in">size</span>;</span><br><span class="line">    dk-&gt;dk_usable = usable;</span><br><span class="line">    dk-&gt;dk_lookup = lookdict_unicode_nodummy;</span><br><span class="line">    dk-&gt;dk_nentries = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(&amp;dk-&gt;dk_indices[<span class="number">0</span>], <span class="number">0xff</span>, es * <span class="built_in">size</span>);</span><br><span class="line">    <span class="built_in">memset</span>(DK_ENTRIES(dk), <span class="number">0</span>, <span class="keyword">sizeof</span>(PyDictKeyEntry) * usable);</span><br><span class="line">    <span class="keyword">return</span> dk;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>函数开头是一些变量的声明和参数的检查。接着，通过 <code>USABLE_FRACTION</code> 计算出参数 <code>size</code> 的2/3大小，这是初始状态下可用于存储键值对的大小。往下，通过比较 <code>size</code> 的值确定索引值所占的字节数。</p>
+<p>再往下分析之前先简单了解 <code>PyDictKeysObject</code> 的实际布局。这个结构体的最后一个字段是未指定长度的数组，这是一个弹性数组成员，<code>sizeof(PyDictKeysObject)</code> 不包含它的大小。<code>PyDictKeysObject</code> 的实际布局如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">+---------------+</span></span><br><span class="line"><span class="comment">| dk_refcnt     |</span></span><br><span class="line"><span class="comment">| dk_size       |</span></span><br><span class="line"><span class="comment">| dk_lookup     |</span></span><br><span class="line"><span class="comment">| dk_usable     |</span></span><br><span class="line"><span class="comment">| dk_nentries   |</span></span><br><span class="line"><span class="comment">+---------------+</span></span><br><span class="line"><span class="comment">| dk_indices    |</span></span><br><span class="line"><span class="comment">|               |</span></span><br><span class="line"><span class="comment">+---------------+</span></span><br><span class="line"><span class="comment">| dk_entries    |</span></span><br><span class="line"><span class="comment">|               |</span></span><br><span class="line"><span class="comment">+---------------+</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p><code>dk_indices</code> 保存的是 <code>PyDictKeyEntry</code> 在 <code>dk_entries</code> 中的索引，<code>dk_entries</code> 通过 <code>DK_ENTRIES</code> 宏定位，定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DK_ENTRIES(dk) \</span></span><br><span class="line">    ((PyDictKeyEntry*)(&amp;((<span class="keyword">int8_t</span>*)((dk)-&gt;dk_indices))[DK_SIZE(dk) * DK_IXSIZE(dk)]))</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DK_SIZE(dk) ((dk)-&gt;dk_size)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> SIZEOF_VOID_P &gt; 4</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DK_IXSIZE(dk)                          \</span></span><br><span class="line">    (DK_SIZE(dk) &lt;= <span class="number">0xff</span> ?                     \</span><br><span class="line">        <span class="number">1</span> : DK_SIZE(dk) &lt;= <span class="number">0xffff</span> ?            \</span><br><span class="line">            <span class="number">2</span> : DK_SIZE(dk) &lt;= <span class="number">0xffffffff</span> ?    \</span><br><span class="line">                <span class="number">4</span> : <span class="keyword">sizeof</span>(<span class="keyword">int64_t</span>))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DK_IXSIZE(dk)                          \</span></span><br><span class="line">    (DK_SIZE(dk) &lt;= <span class="number">0xff</span> ?                     \</span><br><span class="line">        <span class="number">1</span> : DK_SIZE(dk) &lt;= <span class="number">0xffff</span> ?            \</span><br><span class="line">            <span class="number">2</span> : <span class="keyword">sizeof</span>(<span class="keyword">int32_t</span>))</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这个宏有点复杂，需要拆开来分析。<code>(int8_t*)((dk)-&gt;dk_indices)</code> 获取参数 <code>dk</code> 的 <code>dk_indices</code> 字段并将它转换成 <code>int8_t *</code> 类型，<code>int8_t</code> 大小是1个字节。接下来是索引操作 <code>((int8_t*)((dk)-&gt;dk_indices))[DK_SIZE(dk) * DK_IXSIZE(dk)]</code>，方括号中的内容计算的是保存所有索引所需的字节数。最后通过 <code>&amp;</code> 取地址并转换成 <code>PyDictKeyEntry *</code> 类型，以字典 <code>d = {&#39;one&#39;: 3, &#39;four&#39;: 4, &#39;seven&#39;: 5}</code> 为例，它的各个键的hash码与索引位置分别是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashcode = [hash(i) <span class="keyword">for</span> i <span class="keyword">in</span> d.keys()]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>hashcode</span><br><span class="line">[<span class="number">8958378740847757116</span>, <span class="number">-6692500557144227041</span>, <span class="number">-9200291166673549691</span>]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>idx = [i % <span class="number">8</span> <span class="keyword">for</span> i <span class="keyword">in</span> hashcode]</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>idx</span><br><span class="line">[<span class="number">4</span>, <span class="number">7</span>, <span class="number">5</span>]</span><br></pre></td></tr></table></figure>
+
+<p>它的 <code>dk_indices</code> 字段的内存布局为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">+----+</span><br><span class="line">| -1 |  0  &lt;---- (dk)-&gt;dk_indices</span><br><span class="line">+----+</span><br><span class="line">| -1 |  1</span><br><span class="line">+----+  </span><br><span class="line">| -1 |  2</span><br><span class="line">+----+</span><br><span class="line">| -1 |  3</span><br><span class="line">+----+</span><br><span class="line">| 0  |  4</span><br><span class="line">+----+</span><br><span class="line">| 2  |  5</span><br><span class="line">+----+</span><br><span class="line">| -1 |  6</span><br><span class="line">+----+</span><br><span class="line">| 1  |  7</span><br><span class="line">+----+-----------------+---------+-----+</span><br><span class="line">| 8958378740847757116  | &apos;red&apos;   | 25  |    0  &lt;--- DK_ENTRIES(dk)</span><br><span class="line">+----------------------+---------+-----+</span><br><span class="line">| -6692500557144227041 | &apos;green&apos; | 125 |    1</span><br><span class="line">+----------------------+---------+-----+</span><br><span class="line">| -9200291166673549691 | &apos;blue&apos;  | 225 |    2</span><br><span class="line">+----------------------+---------+-----+</span><br><span class="line">|                      |         |     |    3</span><br><span class="line">+----------------------+---------+-----+</span><br><span class="line">|                      |         |     |    4</span><br><span class="line">+----------------------+---------+-----+</span><br></pre></td></tr></table></figure>
+
+<p>继续函数的分析，如果 <code>size</code> 为8且 <code>numfreekeys</code> 大于0，则直接从 <code>keys_free_list</code> 数组中取出缓存的 <code>PyDictKeysObject</code>。缓存相关的函数和变量的定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> PyDict_MAXFREELIST</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PyDict_MAXFREELIST 80</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyDictKeysObject *keys_free_list[PyDict_MAXFREELIST];</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> numfreekeys = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">free_keys_object(PyDictKeysObject *keys)</span><br><span class="line">&#123;</span><br><span class="line">    PyDictKeyEntry *entries = DK_ENTRIES(keys);</span><br><span class="line">    Py_ssize_t i, n;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>, n = keys-&gt;dk_nentries; i &lt; n; i++) &#123;</span><br><span class="line">        Py_XDECREF(entries[i].me_key);</span><br><span class="line">        Py_XDECREF(entries[i].me_value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (keys-&gt;dk_size == PyDict_MINSIZE &amp;&amp; numfreekeys &lt; PyDict_MAXFREELIST) &#123;</span><br><span class="line">        keys_free_list[numfreekeys++] = keys;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    PyObject_FREE(keys);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到，只有 <code>dk_size</code> 字段的值为8才会缓存，这样可以减少小字典 <code>malloc</code> 和 <code>free</code> 的次数。</p>
+<p>进入 <code>else</code> 子句，调用 <code>PyObject_MALLOC</code> 函数为 <code>PyDictKeysObject</code> 结构体分配内存，分配的大小是 <code>PyDictKeysObject</code> 部分的大小、索引部分的大小与 <code>PyDictKeyEntry</code> 部分的大小之和。分配成功后对字段进行初始化然后返回。分配失败则返回 <code>NULL</code>。</p>
+<p>回到 <code>_PyDict_NewPresized</code> 函数，如果返回值为 <code>NULL</code> 则函数直接返回 <code>NULL</code>，否则调用 <code>new_dict</code> 函数创建字典对象，函数定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">new_dict(PyDictKeysObject *keys, PyObject **values)</span><br><span class="line">&#123;</span><br><span class="line">    PyDictObject *mp;</span><br><span class="line">    assert(keys != <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (numfree) &#123;</span><br><span class="line">        mp = free_list[--numfree];</span><br><span class="line">        assert (mp != <span class="literal">NULL</span>);</span><br><span class="line">        assert (Py_TYPE(mp) == &amp;PyDict_Type);</span><br><span class="line">        _Py_NewReference((PyObject *)mp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        mp = PyObject_GC_New(PyDictObject, &amp;PyDict_Type);</span><br><span class="line">        <span class="keyword">if</span> (mp == <span class="literal">NULL</span>) &#123;</span><br><span class="line">            DK_DECREF(keys);</span><br><span class="line">            free_values(values);</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mp-&gt;ma_keys = keys;</span><br><span class="line">    mp-&gt;ma_values = values;</span><br><span class="line">    mp-&gt;ma_used = <span class="number">0</span>;</span><br><span class="line">    mp-&gt;ma_version_tag = DICT_NEXT_VERSION();</span><br><span class="line">    assert(_PyDict_CheckConsistency(mp));</span><br><span class="line">    <span class="keyword">return</span> (PyObject *)mp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个函数不算复杂，<code>numfree</code> 和 <code>free_list</code> <code>与字典缓存相关，numfree</code> 大于0说明 <code>free_list</code> 中存有释放过的字典缓存，简单地取出重用即可。相关的变量和函数定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> PyDictObject *free_list[PyDict_MAXFREELIST];</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> numfree = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span></span><br><span class="line">dict_dealloc(PyDictObject *mp)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject **values = mp-&gt;ma_values;</span><br><span class="line">    PyDictKeysObject *keys = mp-&gt;ma_keys;</span><br><span class="line">    Py_ssize_t i, n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* bpo-31095: UnTrack is needed before calling any callbacks */</span></span><br><span class="line">    PyObject_GC_UnTrack(mp);</span><br><span class="line">    Py_TRASHCAN_SAFE_BEGIN(mp)</span><br><span class="line">    <span class="keyword">if</span> (values != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (values != empty_values) &#123;</span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>, n = mp-&gt;ma_keys-&gt;dk_nentries; i &lt; n; i++) &#123;</span><br><span class="line">                Py_XDECREF(values[i]);</span><br><span class="line">            &#125;</span><br><span class="line">            free_values(values);</span><br><span class="line">        &#125;</span><br><span class="line">        DK_DECREF(keys);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (keys != <span class="literal">NULL</span>) &#123;</span><br><span class="line">        assert(keys-&gt;dk_refcnt == <span class="number">1</span>);</span><br><span class="line">        DK_DECREF(keys);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* 看这里 */</span></span><br><span class="line">    <span class="keyword">if</span> (numfree &lt; PyDict_MAXFREELIST &amp;&amp; Py_TYPE(mp) == &amp;PyDict_Type)</span><br><span class="line">        free_list[numfree++] = mp;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        Py_TYPE(mp)-&gt;tp_free((PyObject *)mp);</span><br><span class="line">    Py_TRASHCAN_SAFE_END(mp)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>缓存相关的部分已在源码中标出，只要缓存的数量没有达到上限且释放的是字典类型则将其保存到 <code>free_list</code> 中，否则释放其内存。</p>
+<p>如果缓存不存在，则调用 <code>PyObject_GC_New</code> 分配内存，分配成功则进行字段初始化并返回，失败则返回 <code>NULL</code>。<code>DICT_NEXT_VERSION</code> 是个宏：<code>#define DICT_NEXT_VERSION() (++pydict_global_version)</code>，<code>pydict_global_version</code> 是个全局静态变量，在字典创建和每次修改时都会递增。</p>
+<p>回到操作码的执行，如果 <code>_PyDict_NewPresized</code> 的返回值为 <code>NULL</code> 则跳转到错误处理。从值栈中获取键和值并调用 <code>PyDict_SetItem</code> 为空字典 <code>map</code> 设置条目。<br><code>PyDict_SetItem</code> 执行失败时会返回-1，所以如果 <code>err</code> 不为0则会跳转到错误处理。最后，全部设置成功，从值栈中弹出所有的键和值并将字典压入值栈中供之后执行的操作码使用。</p>
+<p>简单图解 <code>PEEK</code> 宏：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> PEEK(n) (stack_pointer[-(n)])</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">假设创建的字典为 &#123;k1: v1, k2: v2, k3: v3&#125;，oparg = 3，则值栈为：</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">|       |   &lt;--- stack_pointer</span></span><br><span class="line"><span class="comment">+-------+-------------------------------------------</span></span><br><span class="line"><span class="comment">|  v3   |   PEEK(1) =&gt; stack_pointer - 1  </span></span><br><span class="line"><span class="comment">+-------+                                  i = 1</span></span><br><span class="line"><span class="comment">|  k3   |   PEEK(2) =&gt; stack_pointer - 2  </span></span><br><span class="line"><span class="comment">+-------+-------------------------------------------</span></span><br><span class="line"><span class="comment">|  v2   |   PEEK(3) =&gt; stack_pointer - 3  </span></span><br><span class="line"><span class="comment">+-------+                                  i = 2</span></span><br><span class="line"><span class="comment">|  k2   |   PEEK(4) =&gt; stack_pointer - 4  </span></span><br><span class="line"><span class="comment">+-------+-------------------------------------------</span></span><br><span class="line"><span class="comment">|  v1   |   PEEK(5) =&gt; stack_pointer - 5  </span></span><br><span class="line"><span class="comment">+-------+                                  i = 3</span></span><br><span class="line"><span class="comment">|  k1   |   PEEK(6) =&gt; stack_pointer - 6  </span></span><br><span class="line"><span class="comment">+-------+-------------------------------------------</span></span><br><span class="line"><span class="comment">|  ...  |</span></span><br><span class="line"><span class="comment">+-------+</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_SET.html" rel="prev" title="Python操作码——BUILD_SET">
+      <i class="fa fa-chevron-left"></i> Python操作码——BUILD_SET
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/python/python-opcode-BUILD_SET_UNPACK.html" rel="next" title="Python操作码——BUILD_SET_UNPACK">
+      Python操作码——BUILD_SET_UNPACK <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">L.Y.</p>
+  <div class="site-description" itemprop="description">不懂怎么学？不学怎么懂！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">38</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liu29475" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liu29475" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">L.Y.</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.5.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='155' src="//cdn.jsdelivr.net/gh/theme-next/theme-next-canvas-nest@1/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/muse.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+  <script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme: 'forest',
+      logLevel: 3,
+      flowchart: { curve: 'linear' },
+      gantt: { axisFormat: '%m/%d/%Y' },
+      sequence: { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+
+  
+
+  
+
+</body>
+</html>
